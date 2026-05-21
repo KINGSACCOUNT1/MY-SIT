@@ -15,7 +15,7 @@ services:
     
     envVars:
       - key: DATABASE_URL
-        value: postgresql://neondb_owner:npg_Pc4mXQWbVvH5@ep-holy-sea-a4989cmp-pooler.us-east-1.aws.neon.tech/my-elite-db?sslmode=require
+        value: postgresql://postgres:gTpjdkGJBLBjdFGT@db.fykzoburtipislgjrcjm.supabase.co:5432/postgres
       - key: DJANGO_SETTINGS_MODULE
         value: elite_wealth_capital.settings
       - key: DEBUG
@@ -74,7 +74,7 @@ services:
     
     envVars:
       - key: DATABASE_URL
-        value: postgresql://neondb_owner:npg_Pc4mXQWbVvH5@ep-holy-sea-a4989cmp-pooler.us-east-1.aws.neon.tech/my-elite-db?sslmode=require
+        value: postgresql://postgres:gTpjdkGJBLBjdFGT@db.fykzoburtipislgjrcjm.supabase.co:5432/postgres
       - key: DJANGO_SETTINGS_MODULE
         value: elite_wealth_capital.settings
       - key: DEBUG
