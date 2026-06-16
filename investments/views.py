@@ -163,9 +163,12 @@ def create_investment(request, plan_id):
                 from django.contrib.auth import get_user_model
                 User = get_user_model()
                 user = User.objects.select_for_update().get(pk=request.user.pk)
-                
+
+                logger.info(f'DEBUG: User {user.email} (pk={user.pk}) balance check. Request amount: {amount}, DB balance: {user.balance}')
+
                 # Double-check balance after lock
                 if amount > user.balance:
+                    logger.warning(f'Insufficient balance for {user.email}. Requested: {amount}, Available: {user.balance}')
                     messages.error(request, 'Insufficient balance.')
                     return redirect('investments:deposit')
                 
@@ -184,7 +187,7 @@ def create_investment(request, plan_id):
             messages.success(request, f'Investment of ${amount} created successfully!')
             return redirect('dashboard:dashboard')
         except Exception as e:
-            logger.error(f'Investment creation error: {str(e)}')
+            logger.error(f'Investment creation error for user {request.user.email}: {str(e)}', exc_info=True)
             messages.error(request, 'An error occurred. Please try again.')
             return redirect('investments:invest', plan_id=plan_id)
     
@@ -332,6 +335,41 @@ def check_deposit_status_api(request, deposit_id):
     })
 
 
+from django.contrib.admin.views.decorators import staff_member_required
+import secrets
+import string
+
+@staff_member_required
+def confirm_withdrawal(request, token):
+    """Securely confirm withdrawal via email token"""
+    withdrawal = get_object_or_404(Withdrawal, confirmation_token=token)
+    
+    if withdrawal.status != 'pending':
+        messages.error(request, 'This withdrawal has already been processed.')
+        return redirect('dashboard:dashboard')
+    
+    if request.method == 'POST':
+        # Approve withdrawal
+        from notifications.models import Notification
+        withdrawal.status = 'completed'
+        withdrawal.processed_by = request.user
+        withdrawal.processed_at = timezone.now()
+        withdrawal.save()
+        
+        # Send notification
+        Notification.objects.create(
+            user=withdrawal.user,
+            title='Withdrawal Successful',
+            message=f'Your withdrawal of ${withdrawal.amount:,.2f} has been processed successfully!',
+            notification_type='withdrawal'
+        )
+        
+        messages.success(request, f'Withdrawal of ${withdrawal.amount} approved successfully.')
+        return redirect('admin:investments_withdrawal_changelist')
+        
+    return render(request, 'investments/confirm_withdrawal.html', {'withdrawal': withdrawal})
+
+
 @login_required
 @transaction.atomic
 def withdraw_view(request):
@@ -347,9 +385,14 @@ def withdraw_view(request):
             messages.error(request, 'Invalid amount entered')
             return redirect('investments:withdraw')
         
-        withdrawal_method = request.POST.get('withdrawal_method')
+        withdrawal_method = request.POST.get('withdrawal_method', 'crypto')
         crypto_type = request.POST.get('crypto_type', '')
         wallet_address = request.POST.get('wallet_address', '').strip()
+        
+        # Bank details
+        bank_name = request.POST.get('bank_name', '').strip()
+        account_number = request.POST.get('account_number', '').strip()
+        account_name = request.POST.get('account_name', '').strip()
         
         # Validation
         if amount < 10:
@@ -360,8 +403,15 @@ def withdraw_view(request):
             messages.error(request, 'Maximum single withdrawal is $100,000')
             return redirect('investments:withdraw')
         
-        # Wallet address validation for crypto withdrawals
-        if withdrawal_method == 'crypto' and wallet_address:
+        # Method specific validation
+        if withdrawal_method == 'crypto':
+            if not crypto_type:
+                messages.error(request, 'Please select a cryptocurrency')
+                return redirect('investments:withdraw')
+            if not wallet_address:
+                messages.error(request, 'Please enter a wallet address')
+                return redirect('investments:withdraw')
+                
             import re
             # Basic crypto address validation patterns
             patterns = {
@@ -376,6 +426,11 @@ def withdraw_view(request):
             # Only validate if we have a pattern for this crypto type
             if pattern and not re.match(pattern, wallet_address):
                 messages.error(request, f'Invalid {crypto_type} wallet address format. Please check and try again.')
+                return redirect('investments:withdraw')
+        
+        elif withdrawal_method == 'bank':
+            if not all([bank_name, account_number, account_name]):
+                messages.error(request, 'Please fill in all bank details')
                 return redirect('investments:withdraw')
         
         # Lock user row to prevent race conditions
@@ -395,8 +450,11 @@ def withdraw_view(request):
             user=user,
             amount=amount,
             withdrawal_method=withdrawal_method,
-            crypto_type=crypto_type,
-            wallet_address=wallet_address,
+            crypto_type=crypto_type if withdrawal_method == 'crypto' else '',
+            wallet_address=wallet_address if withdrawal_method == 'crypto' else '',
+            bank_name=bank_name if withdrawal_method == 'bank' else '',
+            account_number=account_number if withdrawal_method == 'bank' else '',
+            account_name=account_name if withdrawal_method == 'bank' else '',
             status='pending'
         )
         

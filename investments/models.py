@@ -7,155 +7,69 @@ from django.utils import timezone
 from django.core.cache import cache
 
 
-class InvestmentPlan(models.Model):
-    """Investment plans with ROI details"""
+import random
+from decimal import Decimal
+from django.db import models
+from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
+from django.core.cache import cache
+
+
+class Asset(models.Model):
+    """Assets available for purchase (Agriculture, Oil, Minerals, Crypto, Stocks)"""
     
     CATEGORY_CHOICES = [
-        ('crypto', 'Crypto Trading'),
-        ('real_estate', 'Real Estate'),
-        ('oil_gas', 'Oil & Gas'),
-        ('agriculture', 'Agriculture'),
-        ('solar', 'Solar Energy'),
-        ('stocks', 'Global Shares'),
+        ('crypto', 'Cryptocurrency'),
+        ('stocks', 'Stocks & Equities'),
+        ('oil', 'Oil & Energy'),
+        ('agriculture', 'Agricultural Commodities'),
+        ('minerals', 'Minerals & Metals'),
     ]
     
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='crypto', help_text='Investment sector')
-    icon = models.CharField(max_length=50, default='fa-chart-line', help_text='FontAwesome icon class')
-    
-    # Amount limits
-    min_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
-    max_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
-    
-    # ROI Configuration
-    daily_roi = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
-        help_text='Daily ROI percentage'
-    )
-    duration_days = models.IntegerField(validators=[MinValueValidator(1)])
-    
-    # Display settings
+    ticker = models.CharField(max_length=10, unique=True)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    price_per_share = models.DecimalField(max_digits=15, decimal_places=2, validators=[MinValueValidator(0.01)])
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='assets/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    is_featured = models.BooleanField(default=False)
-    sort_order = models.IntegerField(default=0)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = 'Investment Plan'
-        verbose_name_plural = 'Investment Plans'
-        ordering = ['sort_order', 'name']
+        verbose_name = 'Asset'
+        verbose_name_plural = 'Assets'
+        ordering = ['category', 'name']
     
     def __str__(self):
-        return f"{self.name} ({self.daily_roi}% daily for {self.duration_days} days)"
-    
-    @property
-    def total_roi(self):
-        """Calculate total ROI percentage"""
-        return self.daily_roi * self.duration_days
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        # Invalidate cache
-        cache.delete('all_investment_plans')
-        cache.delete('home_featured_plans')
-    
-    def delete(self, *args, **kwargs):
-        super().delete(*args, **kwargs)
-        cache.delete('all_investment_plans')
-        cache.delete('home_featured_plans')
+        return f"{self.name} ({self.ticker}) - ${self.price_per_share}"
 
 
-class Investment(models.Model):
-    """User investments"""
+class UserShare(models.Model):
+    """User holdings of specific assets"""
     
-    STATUS_CHOICES = [
-        ('active', 'Active'),
-        ('completed', 'Completed'),
-        ('cancelled', 'Cancelled'),
-    ]
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='shares')
+    asset = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='holders')
+    quantity = models.DecimalField(max_digits=15, decimal_places=4, validators=[MinValueValidator(0)])
+    purchase_price = models.DecimalField(max_digits=15, decimal_places=2, help_text='Average purchase price per share')
     
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='investments')
-    plan = models.ForeignKey(InvestmentPlan, on_delete=models.PROTECT, related_name='investments')
-    amount = models.DecimalField(max_digits=15, decimal_places=2, validators=[MinValueValidator(0)])
-    
-    # Profit tracking
-    expected_profit = models.DecimalField(max_digits=15, decimal_places=2, default=0)
-    actual_profit = models.DecimalField(max_digits=15, decimal_places=2, default=0)
-    
-    # Timeline
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField()
-    completed_at = models.DateTimeField(null=True, blank=True)
-    profit_paid_at = models.DateTimeField(null=True, blank=True)
-    
-    # Status
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
-    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = 'Investment'
-        verbose_name_plural = 'Investments'
-        ordering = ['-start_date']
-        indexes = [
-            models.Index(fields=['user', 'status']),
-            models.Index(fields=['status', 'end_date']),
-        ]
+        verbose_name = 'User Share'
+        verbose_name_plural = 'User Shares'
+        ordering = ['-created_at']
+        unique_together = ['user', 'asset']
     
     def __str__(self):
-        return f"{self.user.email} - {self.plan.name} - ${self.amount}"
-    
-    def save(self, *args, **kwargs):
-        # Calculate end_date if not set
-        if not self.end_date:
-            self.end_date = self.start_date + timezone.timedelta(days=self.plan.duration_days)
-        
-        # Calculate expected profit if not set
-        if not self.expected_profit:
-            daily_profit = self.amount * (self.plan.daily_roi / 100)
-            self.expected_profit = daily_profit * self.plan.duration_days
-        
-        super().save(*args, **kwargs)
-    
+        return f"{self.user.email} - {self.quantity} {self.asset.ticker}"
+
     @property
-    def days_remaining(self):
-        """Days until investment matures"""
-        if self.status != 'active':
-            return 0
-        remaining = (self.end_date - timezone.now()).days
-        return max(0, remaining)
-    
-    @property
-    def progress_percentage(self):
-        """Investment progress percentage"""
-        if self.status != 'active':
-            return 100
-        elapsed = (timezone.now() - self.start_date).days
-        total_days = self.plan.duration_days
-        return min(100, int((elapsed / total_days) * 100))
-    
-    def is_matured(self):
-        """Check if investment has matured"""
-        return timezone.now() >= self.end_date
-    
-    @property
-    def days_elapsed(self):
-        """Days since investment started"""
-        return (timezone.now() - self.start_date).days
-    
-    @property
-    def duration_days(self):
-        """Total duration in days"""
-        return self.plan.duration_days
-    
-    @property
-    def maturity_date(self):
-        """Investment maturity date"""
-        return self.end_date
+    def current_value(self):
+        return self.quantity * self.asset.price_per_share
 
 
 class Deposit(models.Model):
@@ -266,6 +180,7 @@ class Withdrawal(models.Model):
     admin_note = models.TextField(blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
+    confirmation_token = models.CharField(max_length=100, blank=True, null=True)
     
     class Meta:
         verbose_name = 'Withdrawal'
@@ -743,3 +658,61 @@ class CryptoTicker(models.Model):
     
     def __str__(self):
         return f"{self.symbol} ({self.name})"
+
+class InvestmentPlan(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    icon = models.CharField(max_length=50, default='fa-chart-line', help_text='FontAwesome icon class')
+    min_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
+    max_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
+    daily_roi = models.DecimalField(max_digits=5, decimal_places=2, help_text='Daily ROI percentage', validators=[MinValueValidator(0), MaxValueValidator(100)])
+    duration_days = models.IntegerField(validators=[MinValueValidator(1)])
+    is_active = models.BooleanField(default=True)
+    is_featured = models.BooleanField(default=False)
+    sort_order = models.IntegerField(default=0)
+    category = models.CharField(max_length=50, default='crypto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Investment Plan'
+        verbose_name_plural = 'Investment Plans'
+        ordering = ['sort_order', 'name']
+
+    def __str__(self):
+        return self.name
+
+class Investment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='investments')
+    plan = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='investments')
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    status = models.CharField(max_length=20, default='active')
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField(null=True, blank=True)
+    actual_profit = models.DecimalField(max_digits=15, decimal_places=2, default=0)
+    
+    class Meta:
+        verbose_name = 'Investment'
+        verbose_name_plural = 'Investments'
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return f'{self.user.email} - {self.plan.name}'
+
+    def is_matured(self):
+        return timezone.now() >= self.end_date if self.end_date else False
+
+    @property
+    def expected_profit(self):
+        return self.amount * (self.plan.daily_roi / 100) * self.plan.duration_days
+
+    @property
+    def days_elapsed(self):
+        return (timezone.now() - self.start_date).days
+
+    @property
+    def progress_percentage(self):
+        if self.plan.duration_days > 0:
+            return min(100, int((self.days_elapsed / self.plan.duration_days) * 100))
+        return 100
+

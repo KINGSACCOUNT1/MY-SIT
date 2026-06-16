@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 from decimal import Decimal
-from .models import CustomUser, ActivityLog, Referral
+from .models import CustomUser, ActivityLog, Referral, BalanceAdjustment
 
 
 @admin.register(CustomUser)
@@ -20,9 +20,9 @@ class CustomUserAdmin(UserAdmin):
         ('Personal Information', {
             'fields': ('full_name', 'phone', 'country', 'profile_image')
         }),
-        ('💰 FINANCIAL MANAGEMENT', {
+        ('💰 FINANCIAL MANAGEMENT (Use "Balance Adjustments" instead)', {
             'fields': ('balance', 'invested_amount', 'total_profit', 'total_withdrawn', 'referral_bonus'),
-            'description': '<strong style="color: green;">⚠️ When you change the balance, the user will receive a notification!</strong>'
+            'description': '<strong style="color: green;">⚠️ Use the "Balance Adjustment" section to add/deduct funds to keep transaction history correct!</strong>'
         }),
         ('Referral System', {
             'fields': ('referral_code', 'referred_by')
@@ -63,39 +63,8 @@ class CustomUserAdmin(UserAdmin):
     balance_display.short_description = 'Balance'
     
     def save_model(self, request, obj, form, change):
-        """Track balance changes and notify user"""
-        if change:
-            try:
-                old_user = CustomUser.objects.get(pk=obj.pk)
-                old_balance = Decimal(str(old_user.balance or 0))
-                new_balance = Decimal(str(obj.balance or 0))
-                
-                # Check if balance changed
-                if old_balance != new_balance:
-                    difference = new_balance - old_balance
-                    
-                    # Create notification for balance change
-                    from notifications.models import Notification
-                    
-                    if difference > 0:
-                        # Amount added
-                        Notification.objects.create(
-                            user=obj,
-                            title='Funds Added to Account',
-                            message=f'${difference:,.2f} has been added to your account. Your new balance is ${new_balance:,.2f}.',
-                            notification_type='deposit'
-                        )
-                    else:
-                        # Amount deducted
-                        Notification.objects.create(
-                            user=obj,
-                            title='Balance Adjustment',
-                            message=f'${abs(difference):,.2f} has been deducted from your account. Your new balance is ${new_balance:,.2f}.',
-                            notification_type='withdrawal'
-                        )
-            except CustomUser.DoesNotExist:
-                pass
-        
+        # We disabled auto-notification here to prevent duplicate notifications
+        # if using BalanceAdjustment model instead.
         super().save_model(request, obj, form, change)
 
 
@@ -121,3 +90,38 @@ class ReferralAdmin(admin.ModelAdmin):
     search_fields = ['referrer__email', 'referred__email']
     readonly_fields = ['referrer', 'referred', 'created_at']
     list_select_related = ['referrer', 'referred']
+
+
+@admin.register(BalanceAdjustment)
+class BalanceAdjustmentAdmin(admin.ModelAdmin):
+    list_display = ['user', 'amount', 'adjustment_type', 'admin', 'created_at']
+    list_filter = ['adjustment_type', 'created_at']
+    search_fields = ['user__email', 'admin__email']
+    readonly_fields = ['admin', 'created_at']
+    
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:  # Creating new adjustment
+            obj.admin = request.user
+            
+            # Apply to user
+            from django.db import transaction
+            with transaction.atomic():
+                user = obj.user
+                
+                # Update user balance
+                if obj.adjustment_type == 'add':
+                    user.balance += obj.amount
+                else:
+                    user.balance -= obj.amount
+                user.save()
+                
+                # Create notification
+                from notifications.models import Notification
+                Notification.objects.create(
+                    user=user,
+                    title=f'Balance {obj.adjustment_type.title()}',
+                    message=f'Your balance was adjusted by ${obj.amount:,.2f}. Reason: {obj.reason}',
+                    notification_type='info'
+                )
+        
+        super().save_model(request, obj, form, change)

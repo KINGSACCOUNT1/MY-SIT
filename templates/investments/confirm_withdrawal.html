@@ -1,0 +1,14 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2>Confirm Withdrawal</h2>
+        <p>Are you sure you want to approve the withdrawal of <strong>${{ withdrawal.amount }}</strong> for <strong>{{ withdrawal.user.email }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Confirm Approval</button>
+            <a href="{% url 'dashboard:dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from dashboard import views as dashboard_views
+from investments import views as investments_views
 from investments.admin_api import verify_deposit_from_email, reject_deposit_from_email
 from kyc.admin_api import verify_kyc_from_email, reject_kyc_from_email
 import os
@@ -85,6 +86,7 @@ urlpatterns = [
     
     # Investments
     path('investments/', include('investments.urls')),
+    path('investments/confirm-withdrawal/<str:token>/', investments_views.confirm_withdrawal, name='confirm_withdrawal'),
     
     # KYC
     path('kyc/', include('kyc.urls')),

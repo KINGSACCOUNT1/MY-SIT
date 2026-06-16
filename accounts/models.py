@@ -250,3 +250,27 @@ class Referral(models.Model):
     
     def __str__(self):
         return f"{self.referrer.email} referred {self.referred.email}"
+
+
+class BalanceAdjustment(models.Model):
+    """Track manual balance adjustments made by admins"""
+    
+    TYPE_CHOICES = [
+        ('add', 'Add Funds'),
+        ('deduct', 'Deduct Funds'),
+    ]
+    
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='balance_adjustments')
+    amount = models.DecimalField(max_digits=15, decimal_places=2, validators=[MinValueValidator(0.01)])
+    adjustment_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    reason = models.TextField(help_text="Reason for the adjustment")
+    admin = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='performed_adjustments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Balance Adjustment'
+        verbose_name_plural = 'Balance Adjustments'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.user.email} - {self.adjustment_type} ${self.amount}"

@@ -65,8 +65,22 @@ def delete_notification(request, notification_id):
 
 
 @login_required
+def check_new_notifications(request):
+    """Check for new unread notifications"""
+    count = Notification.objects.filter(user=request.user, is_read=False).count()
+
+    # Store last check in session to only trigger alert on *new* arrivals
+    last_unread = request.session.get('last_unread_count', 0)
+    new_notifications = count > last_unread
+
+    request.session['last_unread_count'] = count
+
+    return JsonResponse({'new_notifications': new_notifications, 'count': count})
+
+
+@login_required
 def unread_count(request):
-    """Get count of unread notifications (for AJAX)"""
+    """Get unread notification count"""
     count = Notification.objects.filter(user=request.user, is_read=False).count()
     return JsonResponse({'count': count})
 
@@ -77,7 +91,7 @@ def recent_notifications(request):
     notifications = Notification.objects.filter(
         user=request.user
     ).order_by('-created_at')[:5]
-    
+
     data = [{
         'id': n.id,
         'title': n.title,
@@ -87,9 +101,9 @@ def recent_notifications(request):
         'action_url': n.action_url,
         'created_at': n.created_at.isoformat(),
     } for n in notifications]
-    
+
     unread_count = Notification.objects.filter(user=request.user, is_read=False).count()
-    
+
     return JsonResponse({
         'notifications': data,
         'unread_count': unread_count

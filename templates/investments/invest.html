@@ -1,240 +1,100 @@
 {% extends 'dashboard/base_dashboard.html' %}
 {% load static %}
 
-{% block title %}Create Investment{% endblock %}
+{% block title %}Invest in {{ plan.name }}{% endblock %}
 
 {% block extra_css %}
 <style>
-    .plan-summary {
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
-        border: 1px solid var(--gold);
-        padding: 30px;
-        border-radius: 20px;
+    .invest-header {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
-    
-    .plan-icon {
-        font-size: 3.5rem;
+    .invest-header h1 {
+        font-size: 2.5rem;
+        background: linear-gradient(to right, var(--gold), #ffce54);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .invest-grid {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 30px;
+    }
+    @media (max-width: 991px) {
+        .invest-grid { grid-template-columns: 1fr; }
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 35px;
+        backdrop-filter: blur(15px);
+    }
+    .highlight-text { color: var(--gold); font-weight: 700; }
+    .roi-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 12px;
         color: var(--gold);
-        margin-bottom: 15px;
-    }
-    
-    .plan-name {
-        font-size: 1.75rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: var(--gold);
-    }
-    
-    .plan-roi {
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-    }
-    
-    .info-box {
-        background: rgba(0, 212, 170, 0.1);
-        border-left: 4px solid var(--success);
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-    }
-    
-    .info-box h6 {
-        color: var(--success);
-        margin-bottom: 8px;
-    }
-    
-    .invest-form {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        padding: 30px;
-    }
-    
-    .form-group {
-        margin-bottom: 25px;
-    }
-    
-    .form-label {
-        display: block;
-        color: var(--text-secondary);
-        margin-bottom: 10px;
-        font-weight: 500;
-    }
-    
-    .form-input {
-        width: 100%;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        color: var(--text-primary);
-        font-size: 1rem;
-    }
-    
-    .form-input:focus {
-        outline: none;
-        border-color: var(--gold);
-    }
-    
-    .balance-info {
-        color: var(--text-muted);
-        margin-top: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .balance-info i {
-        color: var(--gold);
-    }
-    
-    .calculation-box {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 25px;
-        border-radius: 15px;
-        margin: 25px 0;
-        border: 1px solid var(--border-color);
-    }
-    
-    .calculation-box h6 {
-        color: var(--gold);
+        font-weight: 600;
         margin-bottom: 20px;
-    }
-    
-    .calc-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .calc-row span:first-child {
-        color: var(--text-muted);
-    }
-    
-    .calc-row:last-child {
-        border-bottom: none;
-        font-size: 1.2rem;
-        font-weight: 700;
-    }
-    
-    .calc-row:last-child span:last-child {
-        color: var(--success);
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="topbar">
-    <div class="topbar-title">
-        <h1><i class="fas fa-plus-circle me-2"></i>Create Investment</h1>
-        <p>Invest in {{ plan.name }}</p>
+<div class="invest-header">
+    <h1>Invest in {{ plan.name }}</h1>
+    <p class="text-secondary">Maximize your wealth with our premium strategy</p>
+</div>
+
+<div class="invest-grid">
+    <div class="glass-card">
+        <form method="POST" id="investForm">
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                <label class="form-label text-uppercase small text-muted">Amount to Invest ($)</label>
+                <input type="number" name="amount" id="investAmount" class="form-input form-control-lg" 
+                       min="{{ plan.min_amount }}" max="{{ plan.max_amount }}" step="100" required oninput="syncInputs(this.value)">
+                
+                <input type="range" id="investRange" class="input-range mt-3"
+                       min="{{ plan.min_amount }}" max="{{ plan.max_amount }}" step="100" value="{{ plan.min_amount }}"
+                       oninput="syncInputs(this.value)">
+            </div>
+            <button type="submit" class="btn-gold btn-lg w-100 mt-4 rounded-pill">Execute Investment</button>
+        </form>
     </div>
-    <a href="{% url 'investments:plans' %}" class="btn-outline">
-        <i class="fas fa-arrow-left me-2"></i>Back to Plans
-    </a>
-</div>
 
-<!-- Plan Summary -->
-<div class="plan-summary">
-    <i class="fas {{ plan.icon|default:'fa-chart-line' }} plan-icon"></i>
-    <div class="plan-name">{{ plan.name }}</div>
-    <div class="plan-roi">{{ plan.daily_roi }}% Daily ROI for {{ plan.duration_days }} Days</div>
-</div>
-
-<div class="info-box">
-    <h6><i class="fas fa-info-circle me-2"></i>Investment Range</h6>
-    <p class="mb-0">
-        Minimum: <strong>${{ plan.min_amount|floatformat:2 }}</strong> &nbsp;|&nbsp;
-        Maximum: <strong>${{ plan.max_amount|floatformat:2 }}</strong>
-    </p>
-</div>
-
-<div class="invest-form">
-    <form method="POST" id="investForm">
-        {% csrf_token %}
-        
-        <div class="form-group">
-            <label class="form-label">Investment Amount (USD) *</label>
-            <input 
-                type="number" 
-                name="amount" 
-                id="investAmount"
-                class="form-input" 
-                placeholder="Enter amount" 
-                min="{{ plan.min_amount }}" 
-                max="{{ plan.max_amount }}"
-                step="0.01"
-                required
-                oninput="calculateProfit()"
-            >
-            <div class="balance-info">
-                <i class="fas fa-wallet me-1"></i>
-                Available Balance: <strong>${{ user.balance|floatformat:2 }}</strong>
-            </div>
+    <div class="glass-card">
+        <div class="roi-badge">{{ plan.daily_roi }}% Daily ROI</div>
+        <h4 class="mb-4">Calculation Summary</h4>
+        <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Investment:</span> <span id="calcAmount" class="fw-bold">$0</span>
         </div>
-        
-        <!-- Profit Calculation -->
-        <div class="calculation-box">
-            <h6><i class="fas fa-calculator me-2"></i>Projected Returns</h6>
-            <div class="calc-row">
-                <span>Investment Amount:</span>
-                <span id="calcAmount">$0.00</span>
-            </div>
-            <div class="calc-row">
-                <span>Daily ROI ({{ plan.daily_roi }}%):</span>
-                <span id="calcDaily">$0.00</span>
-            </div>
-            <div class="calc-row">
-                <span>Duration:</span>
-                <span>{{ plan.duration_days }} Days</span>
-            </div>
-            <div class="calc-row">
-                <span>Total Profit:</span>
-                <span id="calcProfit" style="color: var(--success);">$0.00</span>
-            </div>
-            <div class="calc-row">
-                <span>Final Amount:</span>
-                <span id="calcTotal">$0.00</span>
-            </div>
+        <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Total Profit:</span> <span id="calcProfit" class="text-success fw-bold">$0</span>
         </div>
-        
-        <button type="submit" class="btn-gold btn-lg w-100" data-loading-text="Creating investment...">
-            <i class="fas fa-check me-2"></i>
-            Confirm Investment
-        </button>
-    </form>
+        <div class="d-flex justify-content-between pt-3 border-top border-secondary">
+            <span class="text-muted">Total Returns:</span> <span id="calcTotal" class="text-light fw-bold fs-4">$0</span>
+        </div>
+    </div>
 </div>
 
 <script>
-const planDailyRoi = {{ plan.daily_roi }};
-const planDuration = {{ plan.duration_days }};
+    const dailyRoi = {{ plan.daily_roi }};
+    const duration = {{ plan.duration_days }};
 
-function calculateProfit() {
-    const amount = parseFloat(document.getElementById('investAmount').value) || 0;
-    const dailyProfit = (amount * planDailyRoi) / 100;
-    const totalProfit = dailyProfit * planDuration;
-    const finalAmount = amount + totalProfit;
-    
-    document.getElementById('calcAmount').textContent = '$' + amount.toFixed(2);
-    document.getElementById('calcDaily').textContent = '$' + dailyProfit.toFixed(2);
-    document.getElementById('calcProfit').textContent = '$' + totalProfit.toFixed(2);
-    document.getElementById('calcTotal').textContent = '$' + finalAmount.toFixed(2);
-}
-
-document.getElementById('investForm').addEventListener('submit', function(e) {
-    const amount = parseFloat(document.getElementById('investAmount').value);
-    const balance = {{ user.balance }};
-    
-    if (amount > balance) {
-        e.preventDefault();
-        alert('Insufficient balance. Please add funds to your account.');
-        return;
+    function syncInputs(val) {
+        document.getElementById('investAmount').value = val;
+        document.getElementById('investRange').value = val;
+        const amt = parseFloat(val) || 0;
+        const profit = (amt * dailyRoi / 100) * duration;
+        document.getElementById('calcAmount').textContent = '$' + amt.toLocaleString();
+        document.getElementById('calcProfit').textContent = '$' + profit.toLocaleString(undefined, {minimumFractionDigits: 2});
+        document.getElementById('calcTotal').textContent = '$' + (amt + profit).toLocaleString(undefined, {minimumFractionDigits: 2});
     }
-    
-    const btn = this.querySelector('.btn-gold');
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
-    btn.disabled = true;
-});
+    syncInputs({{ plan.min_amount }});
 </script>
 {% endblock %}
+

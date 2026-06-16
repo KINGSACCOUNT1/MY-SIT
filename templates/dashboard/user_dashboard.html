@@ -446,9 +446,31 @@
     <!-- Dashboard Header -->
     <div class="dashboard-header">
         <div class="container-lg">
-            <div class="dashboard-title">
-                <h1>Welcome, {{ user.full_name }}! 👋</h1>
-                <p class="mb-0" style="opacity: 0.9;">Here's your investment overview</p>
+            <div class="d-flex align-items-center">
+                {% if user.profile_image %}
+                    <img src="{{ user.profile_image.url }}" alt="{{ user.full_name }}" class="rounded-circle me-3" style="width: 80px; height: 80px; object-fit: cover; border: 3px solid var(--gold);">
+                {% else %}
+                    <div class="rounded-circle me-3" style="width: 80px; height: 80px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; border: 3px solid var(--gold);">
+                        <i class="fas fa-user" style="color: white; font-size: 2rem;"></i>
+                    </div>
+                {% endif %}
+                <div class="dashboard-title">
+                    <h1>Welcome, {{ user.full_name }}! 👋</h1>
+                <div class="mt-2">
+                    <span class="badge" style="background: var(--gold); color: var(--navy);">
+                        <i class="fas fa-crown me-1"></i>{{ user.get_account_type_display }}
+                    </span>
+                    {% if user.kyc_status == 'verified' %}
+                        <span class="badge bg-success ms-2">
+                            <i class="fas fa-check-circle me-1"></i>Verified
+                        </span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark ms-2">
+                            <i class="fas fa-clock me-1"></i>{{ user.get_kyc_status_display }}
+                        </span>
+                    {% endif %}
+                </div>
+                <p class="mb-0 mt-2" style="opacity: 0.9;">Here's your investment overview</p>
             </div>
         </div>
     </div>
@@ -616,7 +638,7 @@
                         </a>
                         <a href="{% url 'investments:plans' %}" class="action-btn">
                             <i class="fas fa-plus-circle"></i>
-                            <span>Invest</span>
+                            <span>Buy Shares</span>
                         </a>
                         <a href="{% url 'investments:cards' %}" class="action-btn">
                             <i class="fas fa-credit-card"></i>
@@ -638,7 +660,7 @@
         <!-- Investment Opportunities Carousel -->
         <div class="portfolio-card">
             <div class="portfolio-header">
-                <h3><i class="fas fa-star me-2" style="color: var(--emerald);"></i>Featured Investment Plans</h3>
+                <h3><i class="fas fa-star me-2" style="color: var(--emerald);"></i>Featured Shares Plans</h3>
             </div>
             
             <div class="carousel-container">
@@ -656,7 +678,7 @@
                             <div style="margin-top: 15px;">
                                 <small style="color: #999;">Min: ${{ plan.min_amount|floatformat:0 }} - Max: ${{ plan.max_amount|floatformat:0 }}</small>
                             </div>
-                            <button class="btn btn-primary btn-sm mt-3 w-100">Invest Now</button>
+                            <button class="btn btn-primary btn-sm mt-3 w-100">Buy Shares</button>
                         </div>
                     {% endfor %}
                 </div>

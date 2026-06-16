@@ -275,7 +275,7 @@
                 
                 {% if user.is_authenticated %}
                     <a href="{% url 'investments:invest' plan.id %}" class="plan-btn">
-                        <i class="fas fa-check-circle me-2"></i>Invest Now
+                        <i class="fas fa-check-circle me-2"></i>Buy Shares
                     </a>
                 {% else %}
                     <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="plan-btn">

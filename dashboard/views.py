@@ -513,6 +513,11 @@ def settings_page(request):
             user.full_name = request.POST.get('full_name', user.full_name)
             user.phone = request.POST.get('phone', user.phone)
             user.country = request.POST.get('country', user.country)
+            
+            # Handle profile image
+            if request.FILES.get('profile_image'):
+                user.profile_image = request.FILES.get('profile_image')
+            
             user.save()
             messages.success(request, 'Profile updated successfully.')
         

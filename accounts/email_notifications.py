@@ -874,6 +874,11 @@ def send_withdrawal_notification(withdrawal):
         user = withdrawal.user
         subject = f'💸 New Withdrawal Request: ${withdrawal.amount:,.2f} from {user.full_name}'
         
+        # Generate confirmation token
+        token = secrets.token_urlsafe(32)
+        withdrawal.confirmation_token = token
+        withdrawal.save()
+        
         html_content = f"""
         <!DOCTYPE html>
         <html>
@@ -958,7 +963,12 @@ def send_withdrawal_notification(withdrawal):
                     </div>
                     
                     <div style="text-align: center; margin-top: 30px;">
-                        <a href="https://elitewealthcapita.uk/admin/investments/withdrawal/{withdrawal.id}/change/" 
+                        <a href="{settings.COMPANY_WEBSITE}/investments/confirm-withdrawal/{token}/" 
+                           style="background: #27ae60; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: 600;">
+                            ✅ Confirm & Approve Withdrawal
+                        </a>
+                        <br><br>
+                        <a href="{settings.COMPANY_WEBSITE}/admin/investments/withdrawal/{withdrawal.id}/change/" 
                            style="background: #e74c3c; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: 600;">
                             👁️ View in Admin Panel
                         </a>
@@ -993,7 +1003,7 @@ def send_withdrawal_notification(withdrawal):
         {'Account: ' + withdrawal.account_number if withdrawal.withdrawal_method == 'bank' else ''}
         Submitted: {withdrawal.created_at.strftime('%Y-%m-%d %H:%M:%S UTC')}
         
-        View withdrawal: https://elitewealthcapita.uk/admin/investments/withdrawal/{withdrawal.id}/change/
+        View withdrawal: {settings.COMPANY_WEBSITE}/admin/investments/withdrawal/{withdrawal.id}/change/
         """
         
         email = EmailMultiAlternatives(
