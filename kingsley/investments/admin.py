@@ -431,26 +431,19 @@ class CouponAdmin(admin.ModelAdmin):
 
 @admin.register(AgentApplication)
 class AgentApplicationAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'country', 'expected_referrals', 'commission_rate', 
+    list_display = ['full_name', 'country', 'expected_referrals', 'commission_rate',
                     'status', 'created_at']
     list_filter = ['status', 'country']
     search_fields = ['full_name', 'phone']
 
 
-
-      BTC  → bitcoin          ETH  → ethereum
-      USDT → tether           USDC → usd-coin
-      LTC  → litecoin         BNB  → binancecoin
-      SOL  → solana           XRP  → ripple
-      ADA  → cardano          DOGE → dogecoin
-    """
-
+@admin.register(CryptoTicker)
+class CryptoTickerAdmin(admin.ModelAdmin):
     list_display = ['symbol', 'name', 'coingecko_id', 'display_order', 'is_active']
     list_editable = ['display_order', 'is_active']
     list_filter = ['is_active']
     search_fields = ['symbol', 'name', 'coingecko_id']
     ordering = ['display_order', 'symbol']
-
 
 @admin.register(LoanRepayment)
 class LoanRepaymentAdmin(admin.ModelAdmin):

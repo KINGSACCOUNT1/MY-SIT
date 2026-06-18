@@ -205,6 +205,9 @@ def download_receipt(request, investment_id):
     investment = get_object_or_404(Investment, id=investment_id, user=request.user)
     return generate_investment_receipt(investment)
 
+
+@login_required
+def my_investments(request):
     """User's investment portfolio"""
     investments = Investment.objects.filter(user=request.user).select_related('plan').order_by('-start_date')
     active_investments = investments.filter(status='active')
