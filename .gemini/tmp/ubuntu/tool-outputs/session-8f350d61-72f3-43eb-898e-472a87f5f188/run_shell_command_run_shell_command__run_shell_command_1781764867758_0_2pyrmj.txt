@@ -1,3 +1,0 @@
-{
-  "output": "Output:     total_balance = user.balance\nProcess Group PGID: 89831"
-}

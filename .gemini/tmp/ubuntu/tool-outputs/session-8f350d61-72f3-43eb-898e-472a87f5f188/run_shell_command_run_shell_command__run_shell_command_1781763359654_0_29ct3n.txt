@@ -1,3 +1,0 @@
-{
-  "output": "Output: cat: my: No such file or directory\ncat: site/templates/investments/plans.html: No such file or directory\nExit Code: 2\nProcess Group PGID: 89472"
-}

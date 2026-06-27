@@ -1,3 +1,0 @@
-{
-  "output": "Output: class Asset(models.Model):\nclass UserShare(models.Model):\nProcess Group PGID: 80056"
-}

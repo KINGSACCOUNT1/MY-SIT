@@ -1,3 +1,0 @@
-{
-  "output": "Output: 90-    \n91-    # KYC\n92:    path('kyc/', include('kyc.urls')),\n93-    \n94-    # Notifications\n95-    path('notifications/', include('notifications.urls')),\n96-]\n97-\nProcess Group PGID: 89718"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: python3: can't open file '/home/ubuntu/manage.py': [Errno 2] No such file or directory\nExit Code: 2\nProcess Group PGID: 87602"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Evaluating CustomUser Model\"\nTopic summary: I'm examining 'accounts/models.py' to analyze the implementation of the 'CustomUser' model. I'll focus on key fields like balance, profit, and KYC status, and the methods used to calculate available balance, as these are critical for the application's financial logic and user management.\n\nStrategic Intent: Evaluating the CustomUser model for data integrity and logical correctness."
-}

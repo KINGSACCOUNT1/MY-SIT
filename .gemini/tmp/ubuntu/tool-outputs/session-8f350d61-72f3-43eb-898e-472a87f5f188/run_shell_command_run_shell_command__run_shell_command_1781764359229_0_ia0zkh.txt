@@ -1,3 +1,0 @@
-{
-  "output": "Output: 101:    account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES, default='starter')\nProcess Group PGID: 89740"
-}

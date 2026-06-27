@@ -1,3 +1,0 @@
-{
-  "output": "Output: 50:def plans_list(request):\n51-    \"\"\"List all investment plans sorted by minimum amount\"\"\"\n52-    plans = InvestmentPlan.objects.filter(is_active=True).order_by('min_amount')\n53-    category = request.GET.get('category', None)\n54-    if category:\n55-        plans = plans.filter(category=category)\n56-    return render(request, 'investments/buy_shares.html', {'plans': plans, 'category': category})\n57-\n58-\n59-def sector_page(request, sector):\n60-    \"\"\"Display sector-specific investment opportunities\"\"\"\n61-    sector_map = {\n62-        'crypto': 'crypto',\n63-        'real-estate': 'real_estate',\n64-        'oil-gas': 'oil_gas',\n65-        'agriculture': 'agriculture',\nProcess Group PGID: 89744"
-}

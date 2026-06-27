@@ -1,3 +1,0 @@
-{
-  "output": "Output: [core]\n        repositoryformatversion = 0\n        filemode = true\n        bare = false\n        logallrefupdates = true\n[remote \"origin\"]\n        url = https://github.com/coachjv/elite-wealth-capital.git\n        fetch = +refs/heads/*:refs/remotes/origin/*\nProcess Group PGID: 89874"
-}

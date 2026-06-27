@@ -1,3 +1,0 @@
-{
-  "output": "Output: from django.contrib import admin\nfrom django.utils.html import format_html\nfrom django.http import HttpResponse\nfrom django.utils import timezone\nfrom django.db import transaction\nfrom django.db.models import F\nimport csv\nfrom .models import (Investment, Deposit, Withdrawal, WalletAddress,\n                     Loan, LoanRepayment, VirtualCard, Coupon, CouponUsage, \n                     AgentApplication, AccountUpgrade, CryptoTicker, Asset, UserShare)\nProcess Group PGID: 79977"
-}

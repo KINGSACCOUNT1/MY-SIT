@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/templates/dashboard/user_dashboard.html (1 replacements). Here is the updated code:\n...\n                            <i class=\"fas fa-sign-out-alt\"></i>\n                            <span>Withdraw</span>\n                        </a>\n                        <a href=\"{% url 'investments:plans' %}\" class=\"action-btn\">\n                            <i class=\"fas fa-plus-circle\"></i>\n                            <span>Buy Shares</span>\n                        </a>\n                        <a href=\"{% url 'investments:cards' %}\" class=\"action-btn\">\n                            <i class=\"fas fa-credit-card\"></i>\n                            <span>Cards</span>\n                        </a>\n..."
-}

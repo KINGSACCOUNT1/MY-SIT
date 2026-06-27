@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/investments:\n[DIR] __pycache__\n[DIR] fixtures\n[DIR] management\n[DIR] migrations\n[DIR] templatetags\n__init__.py (0 bytes)\nadmin_api.py (15214 bytes)\nadmin.py.bak (25299 bytes)\napps.py (215 bytes)\nmodels.py (22932 bytes)\nsignals.py (28560 bytes)\ntasks.py (7635 bytes)\nurls.py (1222 bytes)\nutils.py (5180 bytes)\nviews.py (30038 bytes)"
-}

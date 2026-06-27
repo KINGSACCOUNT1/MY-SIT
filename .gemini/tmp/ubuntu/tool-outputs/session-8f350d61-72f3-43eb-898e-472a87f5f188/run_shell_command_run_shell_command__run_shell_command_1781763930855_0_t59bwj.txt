@@ -1,3 +1,0 @@
-{
-  "output": "Output: INSTALLED_APPS = [\n    # Modern Admin UI - MUST be before django.contrib.admin\n    'jazzmin',\n    \n    # Django core\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'django.contrib.humanize',\n    \n    # Third Party\n    'corsheaders',\n    'django_celery_beat',\n    'django_celery_results',\n    'django_ratelimit',\n    \n    # Cloud Storage\n    'cloudinary_storage',\n    'cloudinary',\n    \n    # Local Apps\n    'accounts',\n    'investments',\n    'dashboard',\n    'kyc',\n    'notifications',\n]\nProcess Group PGID: 89637"
-}

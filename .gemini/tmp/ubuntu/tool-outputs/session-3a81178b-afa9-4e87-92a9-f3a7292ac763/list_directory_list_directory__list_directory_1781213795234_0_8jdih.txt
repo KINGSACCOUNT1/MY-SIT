@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/coach/venv:\n[DIR] bin\n[DIR] include\n[DIR] lib\n[DIR] lib64\n.gitignore (69 bytes)\npyvenv.cfg (162 bytes)"
-}

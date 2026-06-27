@@ -1,3 +1,0 @@
-{
-  "output": "Output:         unique_together = ['user', 'asset']\n    \n    def __str__(self):\n        return f\"{self.user.email} - {self.quantity} {self.asset.ticker}\"\nProcess Group PGID: 89385"
-}

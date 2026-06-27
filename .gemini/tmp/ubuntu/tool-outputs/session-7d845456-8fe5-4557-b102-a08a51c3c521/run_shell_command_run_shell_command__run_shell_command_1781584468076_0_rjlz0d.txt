@@ -1,3 +1,0 @@
-{
-  "output": "Output: -rw-rw-r-- 1 ubuntu ubuntu 22932 Jun 15 16:03 'my site/investments/models.py'\nProcess Group PGID: 79701"
-}

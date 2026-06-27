@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/coach/static/js:\n.gitkeep (0 bytes)\ndashboard.js (15801 bytes)\nmining.js (10382 bytes)\np2p.js (7147 bytes)\ntestimonials-popup.js (20363 bytes)\ntrading.js (10746 bytes)"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: grep: my site/investments/__pycache__/admin.cpython-314.pyc: binary file matches\ngrep: my site/investments/__pycache__/models.cpython-314.pyc: binary file matches\ngrep: my site/investments/migrations/__pycache__/0006_asset_usershare_and_more.cpython-314.pyc: binary file matches\nmy site/investments/admin.py.bak:                     AgentApplication, AccountUpgrade, CryptoTicker, Asset, UserShare)\nmy site/investments/admin.py:                     AgentApplication, AccountUpgrade, CryptoTicker, Asset, UserShare)\nmy site/investments/models.py:class UserShare(models.Model):\nmy site/investments/models.py.backup_corrupt:class UserShare(models.Model):\nProcess Group PGID: 89234"
-}

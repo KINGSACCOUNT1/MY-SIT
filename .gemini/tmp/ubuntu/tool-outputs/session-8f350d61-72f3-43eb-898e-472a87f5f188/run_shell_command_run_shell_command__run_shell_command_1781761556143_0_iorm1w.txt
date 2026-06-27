@@ -1,3 +1,0 @@
-{
-  "output": "Output: # Django Core\nDjango>=4.2,<5.0\ndjango-cors-headers>=4.2\ndj-database-url>=2.1\ndjango-ratelimit>=4.1\n\n# Modern Admin UI\ndjango-jazzmin>=3.0,<4.0\n\n# 2FA Support\npyotp>=2.8\n\n# Database\npsycopg2-binary>=2.9\n\n# Async Tasks (for background jobs like ROI calculation)\ncelery>=5.3\nredis>=4.6\ndjango-celery-beat>=2.5\ndjango-celery-results>=2.5\n\n# File Handling\nPillow>=10.0\nqrcode>=7.4\n\n# Cloud Storage\ncloudinary>=1.36\ndjango-cloudinary-storage>=0.3\n\n# Production Server\ngunicorn>=21.0\nwhitenoise>=6.5\n\n# Environment\npython-dotenv>=1.0\n\n# Utilities\npython-dateutil>=2.8\n\n# Security\nbleach>=6.1\n\n# PDF Generation (for receipts)\nreportlab>=4.0\n\n# Error Tracking\nsentry-sdk>=2.0\nProcess Group PGID: 89212"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/views.py (1 replacements). Here is the updated code:\n...\n    \"\"\"List all investment plans sorted by minimum amount\"\"\"\n    plans = InvestmentPlan.objects.filter(is_active=True).order_by('min_amount')\n    category = request.GET.get('category', None)\n    if category:\n        plans = plans.filter(category=category)\n    return render(request, 'investments/buy_shares.html', {'plans': plans, 'category': category})\n\n\ndef sector_page(request, sector):\n    \"\"\"Display sector-specific investment opportunities\"\"\"\n    sector_map = {\n..."
-}

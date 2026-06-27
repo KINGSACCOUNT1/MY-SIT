@@ -1,3 +1,0 @@
-{
-  "output": "Output:                 # Upgrade the user's account\n                user = obj.user\n                user.account_type = obj.requested_tier\n                user.save()\n                \n                obj.processed_by = request.user\n                obj.processed_at = timezone.now()\n        \n        super().save_model(request, obj, form, change)\n\n\n@admin.register(CryptoTicker)\nclass CryptoTickerAdmin(admin.ModelAdmin):\n    \"\"\"\n    Manage which cryptocurrencies appear in the live price ticker shown\n    on every page. Prices are fetched live from the CoinGecko public API\nProcess Group PGID: 89586"
-}

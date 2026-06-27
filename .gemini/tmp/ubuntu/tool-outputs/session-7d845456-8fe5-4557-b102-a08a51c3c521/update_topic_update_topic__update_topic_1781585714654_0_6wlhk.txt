@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Investigating Missing Models\"\nTopic summary: I am currently investigating a discrepancy in the codebase: `InvestmentPlan` and `Investment` models are referenced across the project but appear missing from `my site/investments/models.py`. I will fix this issue before proceeding with the requested page revamp and ROI logic changes.\n\nStrategic Intent: I will investigate why `InvestmentPlan` and `Investment` models are not visible in `models.py` despite being referenced in other files, and then proceed with the user's request to revamp the \"Buy Shares\" page once the models are located."
-}

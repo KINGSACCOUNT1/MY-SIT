@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/urls.py (1 replacements). Here is the updated code:\n...\nfrom . import views\n\napp_name = 'investments'\n\nurlpatterns = [\n    path('buy-shares/', views.plans_list, name='buy_shares'),\n    path('sectors/<str:sector>/', views.sector_page, name='sector'),\n    path('invest/<int:plan_id>/', views.create_investment, name='invest'),\n    path('my-investments/', views.my_investments, name='my_investments'),\n    path('receipt/<int:investment_id>/', views.download_receipt, name='download_receipt'),\n    path('deposit/', views.deposit_view, name='deposit'),\n..."
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: 655:class InvestmentPlan(models.Model):\n678:class Investment(models.Model):\nProcess Group PGID: 88566"
-}

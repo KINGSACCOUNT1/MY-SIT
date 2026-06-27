@@ -1,3 +1,0 @@
-{
-  "output": "Output:     @staticmethod\n    def get_tier_benefits(tier):\n        \"\"\"Get benefits for each tier\"\"\"\n        benefits = {\nProcess Group PGID: 89529"
-}

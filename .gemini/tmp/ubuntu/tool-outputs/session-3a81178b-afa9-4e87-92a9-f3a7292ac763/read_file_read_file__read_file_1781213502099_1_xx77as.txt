@@ -1,3 +1,0 @@
-{
-  "output": "# Render Deployment Environment Variables\n# This is a template for production environment on Render\n\n# Database Configuration (Neon PostgreSQL)\nDATABASE_URL=postgresql://neondb_owner:npg_NOnHIzUEV1T5@ep-curly-king-apo21r98-pooler.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\n\n# Django Configuration\nDEBUG=False\nDJANGO_SECRET_KEY=your-secret-key-will-be-generated-by-render\nALLOWED_HOSTS=.onrender.com,coachjvtech.us,www.coachjvtech.us\n\n# Admin Configuration\nADMIN_USERNAME=admin\nADMIN_EMAIL=admin@coachjvtech.us\nADMIN_PASSWORD=your-secure-password-here\n\n# Security Settings\nCSRF_TRUSTED_ORIGINS=https://coachjvtech.us,https://www.coachjvtech.us,https://*.onrender.com\n"
-}

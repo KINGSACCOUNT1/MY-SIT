@@ -1,3 +1,0 @@
-{
-  "output": "Output:                 'insights': 'Exclusive Investment Plans',\nProcess Group PGID: 79727"
-}

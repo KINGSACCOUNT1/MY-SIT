@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/elite_wealth_capital/settings.py (1 replacements). Here is the updated code:\n...\n        \"investments.WalletAddress\": \"fas fa-wallet\",\n        \"investments.Loan\": \"fas fa-handshake\",\n        \"investments.VirtualCard\": \"fas fa-credit-card\",\n        \"investments.Coupon\": \"fas fa-ticket\",\n        \"investments.AgentApplication\": \"fas fa-user-tie\",\n        \"upgrades.AccountUpgrade\": \"fas fa-arrow-up\",\n        \"kyc\": \"fas fa-id-card\",\n        \"kyc.KYCDocument\": \"fas fa-file-lines\",\n        \"notifications\": \"fas fa-bell\",\n        \"notifications.Notification\": \"fas fa-envelope\",\n        \"dashboard\": \"fas fa-gauge-high\",\n..."
-}

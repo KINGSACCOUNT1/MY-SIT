@@ -1,3 +1,0 @@
-{
-  "output": "Output:         verbose_name = 'Coupon Usage'\n        verbose_name_plural = 'Coupon Usages'\n        ordering = ['-used_at']\n    \n    def __str__(self):\n        return f\"{self.coupon.code} used by {self.user.email}\"\nProcess Group PGID: 89421"
-}

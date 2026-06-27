@@ -1,3 +1,0 @@
-{
-  "output": "Output: Generating public/private ed25519 key pair.\nYour identification has been saved in /home/ubuntu/.ssh/id_ed25519_render\nYour public key has been saved in /home/ubuntu/.ssh/id_ed25519_render.pub\nThe key fingerprint is:\nSHA256:2B7IE2I5OdDFec+8tSTZedooaW1Vhu1zfvFV+THkDSw ubuntu@ip-172-31-44-216\nThe key's randomart image is:\n+--[ED25519 256]--+\n|  .. o..     .o+.|\n|   ..oo .   E +=*|\n|    B .. + o o =*|\n|   . = =  * = oo=|\n|      = S  B B .*|\n|       o .= * . +|\n|        .. o    .|\n|                 |\n|                 |\n+----[SHA256]-----+\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBv5T+ilWlnk8V0QNEyDSMiDlQj2MGAD3L/2F+vBGCD8 ubuntu@ip-172-31-44-216\nProcess Group PGID: 89098"
-}

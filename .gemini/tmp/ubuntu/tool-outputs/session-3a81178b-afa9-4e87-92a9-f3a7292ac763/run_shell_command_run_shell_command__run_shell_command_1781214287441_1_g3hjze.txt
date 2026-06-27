@@ -1,3 +1,0 @@
-{
-  "output": "Output: Deleting Service: srv-d8hklbtckfvc73arupt0\nDeleting Service: srv-d8bapo8g4nts73fbj1ng\nDeleting Service: crn-d87ovq3bc2fs73e776rg\nDeleting Service: crn-d87og7rbc2fs73e6ka90\nDeleting Service: srv-d860ief7f7vs73e6jmt0\nDeleting Service: srv-d82kis9j2pic73al4bog\nDeleting Service: srv-d7tc4qn7f7vs73fbdvmg\nDeleting Service: srv-d7qoa5n7f7vs73cdnqv0\nDeleting Service: srv-d7qnhtv7f7vs73cdb1c0\nDeleting Database: dpg-d82kii1j2pic73al4160-a\nProcess Group PGID: 55432"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/templates/investments/plans.html (1 replacements). Here is the updated code:\n...\n\n{% block content %}\n<!-- Top Bar -->\n<div class=\"topbar\">\n    <div class=\"topbar-title\">\n        <h1><i class=\"fas fa-rocket me-2\" style=\"color: var(--gold);\"></i>Buy Shares</h1>\n        <p>Choose a plan and start earning profits</p>\n    </div>\n    <a href=\"{% url 'dashboard:dashboard' %}\" class=\"btn-outline\">\n        <i class=\"fas fa-arrow-left me-2\"></i>Dashboard\n    </a>\n..."
-}

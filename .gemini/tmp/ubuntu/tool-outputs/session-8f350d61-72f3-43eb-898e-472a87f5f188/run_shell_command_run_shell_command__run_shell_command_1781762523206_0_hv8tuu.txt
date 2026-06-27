@@ -1,3 +1,0 @@
-{
-  "output": "Output: grep: my site/investments/__pycache__/admin.cpython-314.pyc: binary file matches\nmy site/investments/admin.py.bak:class CouponUsageAdmin(admin.ModelAdmin):\nmy site/investments/admin.py:class CouponUsageAdmin(admin.ModelAdmin):\nProcess Group PGID: 89282"
-}

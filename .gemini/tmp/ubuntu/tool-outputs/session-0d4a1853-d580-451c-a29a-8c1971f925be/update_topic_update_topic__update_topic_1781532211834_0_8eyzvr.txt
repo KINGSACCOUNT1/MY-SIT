@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Auditing Settings and Core Logic\"\nTopic summary: I'm analyzing 'elite_wealth_capital/settings.py' to check for security vulnerabilities (like hardcoded secrets or insecure defaults) and 'elite_wealth_capital/urls.py' for routing issues. I'll also examine the models in 'accounts' and 'investments' to ensure the data structure is sound and look for logic bugs in 'investments/views.py'.\n\nStrategic Intent: Deep dive into project settings and core logic to identify security risks and architectural flaws."
-}

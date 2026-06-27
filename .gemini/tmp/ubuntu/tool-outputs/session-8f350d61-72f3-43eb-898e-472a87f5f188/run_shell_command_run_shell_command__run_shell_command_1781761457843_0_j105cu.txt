@@ -1,3 +1,0 @@
-{
-  "output": "Output: app_name = 'investments'\n    path('invest/<int:plan_id>/', views.create_investment, name='invest'),\n    path('my-investments/', views.my_investments, name='my_investments'),\nProcess Group PGID: 89164"
-}

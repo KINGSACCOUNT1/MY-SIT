@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Auditing Investment Update Logic\"\nTopic summary: I'm examining 'investments/utils.py' to analyze the 'check_and_update_investments' function. I'll focus on how ROI is calculated, how it's credited to users, and whether the logic for maturing investments and paying out profits is sound and secure, as this is a core part of the application's financial operations.\n\nStrategic Intent: Auditing ROI calculation and investment update logic for potential financial errors."
-}

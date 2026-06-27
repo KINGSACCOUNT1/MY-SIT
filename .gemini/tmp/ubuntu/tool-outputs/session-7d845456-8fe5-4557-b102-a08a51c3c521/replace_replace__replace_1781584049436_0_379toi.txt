@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/templates/dashboard/user_dashboard.html (1 replacements). Here is the updated code:\n...\n        </div>\n\n        <!-- Investment Opportunities Carousel -->\n        <div class=\"portfolio-card\">\n            <div class=\"portfolio-header\">\n                <h3><i class=\"fas fa-star me-2\" style=\"color: var(--emerald);\"></i>Featured Shares Plans</h3>\n            </div>\n            \n            <div class=\"carousel-container\">\n                <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;\">\n                    {% for plan in featured_plans %}\n..."
-}

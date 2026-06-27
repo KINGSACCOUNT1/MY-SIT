@@ -1,3 +1,0 @@
-{
-  "output": "Output: 8:                     Loan, LoanRepayment, VirtualCard, Coupon, AgentApplication, CryptoTicker)\nProcess Group PGID: 89304"
-}

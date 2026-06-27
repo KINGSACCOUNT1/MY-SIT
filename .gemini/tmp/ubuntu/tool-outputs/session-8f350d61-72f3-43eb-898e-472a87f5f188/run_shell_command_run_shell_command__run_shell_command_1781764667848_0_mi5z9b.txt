@@ -1,3 +1,0 @@
-{
-  "output": "Output:                         Great news! <strong>{referred_user.full_name}</strong> just signed up using your referral code \n                        <span style=\"background: #fff3cd; padding: 3px 8px; border-radius: 3px; font-family: monospace;\">{referrer.referral_code}</span>, \n                        and your referral bonus has been credited to your account!\n                    </p>\n                    \n                    <div class=\"bonus-box\">\n                        <p style=\"margin: 0; font-size: 18px; font-weight: 500;\">💰 Bonus Credited</p>\n                        <div class=\"bonus-amount\">${bonus_amount:.2f}</div>\nProcess Group PGID: 89805"
-}

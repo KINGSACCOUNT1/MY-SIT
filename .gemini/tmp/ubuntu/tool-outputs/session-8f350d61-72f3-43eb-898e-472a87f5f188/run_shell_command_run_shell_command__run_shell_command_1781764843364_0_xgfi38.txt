@@ -1,3 +1,0 @@
-{
-  "output": "Output: 94:    referral_bonus = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, validators=[MinValueValidator(0)])\n95-    \n96-    # Referral System\n97-    referral_code = models.CharField(max_length=8, unique=True, editable=False)\n98-    referred_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='referrals')\n99-    \n--\n191:        return self.total_profit + self.referral_bonus\n192-\n193-\n194-class ActivityLog(models.Model):\n195-    \"\"\"Track user activities for security audit\"\"\"\n196-    \nProcess Group PGID: 89822"
-}

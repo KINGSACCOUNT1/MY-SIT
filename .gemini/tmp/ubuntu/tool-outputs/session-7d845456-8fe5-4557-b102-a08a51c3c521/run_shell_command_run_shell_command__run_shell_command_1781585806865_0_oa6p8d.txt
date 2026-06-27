@@ -1,3 +1,0 @@
-{
-  "output": "Output: ./my site/backup_database.py\n./my site/elite_wealth_capital/settings.py\n./my site/investments/management/commands/populate_plans.py\n./my site/investments/views.py\n./my site/investments/migrations/0001_initial.py\n./my site/dashboard/views.py\n./my site/create_sample_plans.py\nExit Code: 1\nProcess Group PGID: 79930"
-}

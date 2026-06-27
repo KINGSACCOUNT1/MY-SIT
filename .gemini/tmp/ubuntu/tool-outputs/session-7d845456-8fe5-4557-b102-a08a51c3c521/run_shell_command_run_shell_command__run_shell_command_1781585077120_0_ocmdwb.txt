@@ -1,3 +1,0 @@
-{
-  "output": "Output: .            __pycache__   apps.py     migrations  tasks.py      utils.py\n..           admin.py.bak  fixtures    models.py   templatetags  views.py\n__init__.py  admin_api.py  management  signals.py  urls.py\nProcess Group PGID: 79778"
-}

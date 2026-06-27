@@ -1,3 +1,0 @@
-{
-  "output": "Output: class CouponUsage(models.Model):\n    \"\"\"Track coupon usage\"\"\"\n    \n    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, related_name='usages')\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='coupon_usages')\n    deposit = models.ForeignKey(Deposit, on_delete=models.SET_NULL, null=True, blank=True)\n    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)\n    used_at = models.DateTimeField(auto_now_add=True)\n    \n    class Meta:\n        verbose_name = 'Coupon Usage'\nProcess Group PGID: 89417"
-}

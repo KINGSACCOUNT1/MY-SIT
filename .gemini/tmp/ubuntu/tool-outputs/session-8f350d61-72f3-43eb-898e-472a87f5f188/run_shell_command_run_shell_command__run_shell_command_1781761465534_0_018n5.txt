@@ -1,3 +1,0 @@
-{
-  "output": "Output: def plans_list(request):\n    \"\"\"List all investment plans\"\"\"\n    plans = InvestmentPlan.objects.filter(is_active=True).order_by('sort_order')\n    category = request.GET.get('category', None)\n    if category:\n        plans = plans.filter(category=category)\n    return render(request, 'investments/plans.html', {'plans': plans, 'category': category})\n\n\ndef sector_page(request, sector):\n    \"\"\"Display sector-specific investment opportunities\"\"\"\nProcess Group PGID: 89168"
-}

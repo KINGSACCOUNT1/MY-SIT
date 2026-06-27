@@ -1,3 +1,0 @@
-{
-  "output": "Output: grep: my: Is a directory\ngrep: site/templates/**/*.html: No such file or directory\nsed: no input files\ngrep: my: Is a directory\ngrep: site/templates/**/*.html: No such file or directory\nsed: no input files\nExit Code: 123\nProcess Group PGID: 89670"
-}

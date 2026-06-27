@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/templates:\n[DIR] accounts\n[DIR] dashboard\n[DIR] investments\n[DIR] kyc\n[DIR] notifications\n403.html (2229 bytes)\n404.html (2907 bytes)\n500.html (3251 bytes)\nbase.html (19436 bytes)\nhome.html (87805 bytes)\nus-services.html (34206 bytes)"
-}

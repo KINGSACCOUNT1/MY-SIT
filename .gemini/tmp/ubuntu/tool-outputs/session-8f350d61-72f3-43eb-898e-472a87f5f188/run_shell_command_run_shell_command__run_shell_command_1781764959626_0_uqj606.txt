@@ -1,3 +1,0 @@
-{
-  "output": "Output: [remote \"origin\"]\n        fetch = +refs/heads/*:refs/remotes/origin/*\ntotal 36\ndrwxrwxr-x  6 ubuntu ubuntu 4096 Jun 18 06:42 .\ndrwxr-x--- 18 ubuntu ubuntu 4096 Jun 18 06:42 ..\n-rw-rw-r--  1 ubuntu ubuntu   23 Jun 18 06:42 HEAD\n-rw-rw-r--  1 ubuntu ubuntu  214 Jun 18 06:42 config\n-rw-rw-r--  1 ubuntu ubuntu   73 Jun 18 06:42 description\ndrwxrwxr-x  2 ubuntu ubuntu 4096 Jun 18 06:42 hooks\ndrwxrwxr-x  2 ubuntu ubuntu 4096 Jun 18 06:42 info\ndrwxrwxr-x  4 ubuntu ubuntu 4096 Jun 18 06:42 objects\ndrwxrwxr-x  4 ubuntu ubuntu 4096 Jun 18 06:42 refs\nProcess Group PGID: 89869"
-}

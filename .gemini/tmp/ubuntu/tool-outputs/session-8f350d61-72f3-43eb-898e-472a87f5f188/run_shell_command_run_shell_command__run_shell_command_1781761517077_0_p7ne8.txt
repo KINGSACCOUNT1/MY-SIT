@@ -1,3 +1,0 @@
-{
-  "output": "Output: base_dashboard.html\nProcess Group PGID: 89190"
-}

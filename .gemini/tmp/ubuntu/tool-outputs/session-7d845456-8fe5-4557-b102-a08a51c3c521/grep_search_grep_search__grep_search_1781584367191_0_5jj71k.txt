@@ -1,3 +1,0 @@
-{
-  "output": "No matches found for pattern \"Investment|Plan\" in the workspace directory (filter: \"my site/investments/models.py\")."
-}

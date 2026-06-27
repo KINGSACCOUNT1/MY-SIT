@@ -1,3 +1,0 @@
-{
-  "output": "Output: /usr/bin/bash: line 4: neonctl: command not found\nExit Code: 127\nProcess Group PGID: 55286"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/management/commands/populate_plans.py (1 replacements). Here is the updated code:\n...\n            {\n                'name': 'Bronze Plan',\n                'description': 'Balanced returns for steady growth',\n                'min_amount': Decimal('1000.00'),\n                'max_amount': Decimal('4999.99'),\n                'daily_roi': Decimal('20.0'),\n                'duration_days': 1,\n                'icon': 'fa-medal',\n                'is_active': True,\n                'is_featured': False,\n                'sort_order': 2\n            },\n..."
-}

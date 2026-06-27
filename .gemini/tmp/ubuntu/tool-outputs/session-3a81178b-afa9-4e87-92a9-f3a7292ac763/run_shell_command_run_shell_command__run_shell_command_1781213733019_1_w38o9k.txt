@@ -1,3 +1,0 @@
-{
-  "output": "Output: [{\"cursor\":\"2Z3OMinLoElvNHBvM3Q4YzczY204anNn\",\"owner\":{\"email\":\"admin@amiragold.trade\",\"id\":\"tea-d7qlo4po3t8c73cm8jsg\",\"name\":\"My Workspace\",\"type\":\"team\"}}]\nProcess Group PGID: 55281"
-}

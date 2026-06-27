@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/management/commands/populate_plans.py (1 replacements). Here is the updated code:\n...\n            {\n                'name': 'Platinum Plan',\n                'description': 'Maximum returns for elite investors',\n                'min_amount': Decimal('50000.00'),\n                'max_amount': Decimal('999999.99'),\n                'daily_roi': Decimal('20.0'),\n                'duration_days': 1,\n                'icon': 'fa-trophy',\n                'is_active': True,\n                'is_featured': False,\n                'sort_order': 5\n            },\n..."
-}

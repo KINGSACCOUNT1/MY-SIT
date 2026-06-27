@@ -1,3 +1,0 @@
-{
-  "output": "No files found matching pattern \"my site/**/withdrawal*.html\" within /home/ubuntu"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: import random\nfrom decimal import Decimal\nfrom django.db import models\nfrom django.conf import settings\nfrom django.core.validators import MinValueValidator, MaxValueValidator\nfrom django.utils import timezone\nfrom django.core.cache import cache\n\n\nimport random\nfrom decimal import Decimal\nfrom django.db import models\nfrom django.conf import settings\nfrom django.core.validators import MinValueValidator, MaxValueValidator\nfrom django.utils import timezone\nfrom django.core.cache import cache\n\n\nclas\nProcess Group PGID: 79837"
-}

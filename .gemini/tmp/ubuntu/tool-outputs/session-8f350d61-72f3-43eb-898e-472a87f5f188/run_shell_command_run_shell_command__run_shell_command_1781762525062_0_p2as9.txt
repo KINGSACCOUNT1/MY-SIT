@@ -1,3 +1,0 @@
-{
-  "output": "Output: 571:class CouponUsageAdmin(admin.ModelAdmin):\n572-    list_display = ['coupon', 'user', 'used_at']\n573-    list_filter = ['used_at']\n574-    search_fields = ['user__email', 'coupon__code']\n575-    readonly_fields = ['coupon', 'user', 'used_at']\n576-    list_select_related = ['coupon', 'user']\nProcess Group PGID: 89287"
-}

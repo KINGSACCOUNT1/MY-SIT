@@ -1,3 +1,0 @@
-{
-  "output": "Output: 84:def signup_view(request):\n85-    # Handle rate limit exceeded\n86-    if getattr(request, 'limited', False):\n87-        messages.error(request, 'Too many signup attempts. Please try again later.')\n88-        return redirect('accounts:signup')\n89-    \n90-    if request.user.is_authenticated:\n91-        return redirect('dashboard:dashboard')\n92-    \n93-    if request.method == 'POST':\n94-        email = request.POST.get('email', '').strip().lower()\nProcess Group PGID: 89770"
-}

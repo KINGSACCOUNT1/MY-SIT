@@ -1,3 +1,0 @@
-{
-  "output": "Output:         \"\"\"Auto-upgrade user account when admin approves\"\"\"\n        if change:\n            old_status = AccountUpgrade.objects.get(pk=obj.pk).status\n            if old_status != obj.status and obj.status == 'approved':\n                # Upgrade the user's account\nProcess Group PGID: 89582"
-}

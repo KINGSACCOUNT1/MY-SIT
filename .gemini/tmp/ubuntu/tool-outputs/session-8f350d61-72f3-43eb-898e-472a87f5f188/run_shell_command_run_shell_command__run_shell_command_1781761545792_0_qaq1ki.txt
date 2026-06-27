@@ -1,3 +1,0 @@
-{
-  "output": "Output: from django import template\n\nregister = template.Library()\n\n@register.filter\ndef multiply(value, arg):\n    \"\"\"Multiply value by argument\"\"\"\n    try:\n        return float(value) * float(arg)\n    except (ValueError, TypeError):\n        return 0\n\n@register.filter\ndef divide(value, arg):\n    \"\"\"Divide value by argument\"\"\"\n    try:\n        return float(value) / float(arg)\n    except (ValueError, TypeError, ZeroDivisionError):\n        return 0\nProcess Group PGID: 89208"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/coach/static/css/style.css (1 replacements). Here is the updated code:\n...\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    z-index: 2;\n}\n}\n\n.particle {\n    position: absolute;\n..."
-}

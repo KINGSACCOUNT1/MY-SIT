@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/management/commands/populate_plans.py (1 replacements). Here is the updated code:\n...\n            {\n                'name': 'Starter Plan',\n                'description': 'Perfect for beginners starting their investment journey',\n                'min_amount': Decimal('50.00'),\n                'max_amount': Decimal('999.99'),\n                'daily_roi': Decimal('20.0'),\n                'duration_days': 1,\n                'icon': 'fa-rocket',\n                'is_active': True,\n                'is_featured': False,\n                'sort_order': 1\n            },\n..."
-}

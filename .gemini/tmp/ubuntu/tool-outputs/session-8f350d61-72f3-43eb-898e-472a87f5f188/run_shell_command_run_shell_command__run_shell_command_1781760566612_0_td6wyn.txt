@@ -1,3 +1,0 @@
-{
-  "output": "Output:     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='investments')\n    plan = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='investments')\nProcess Group PGID: 88651"
-}

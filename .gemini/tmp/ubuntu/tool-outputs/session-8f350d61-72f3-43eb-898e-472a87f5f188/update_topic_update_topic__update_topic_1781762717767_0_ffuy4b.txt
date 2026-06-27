@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Refactoring Investment System - Cleanup Phase\"\nTopic summary: ...\n\nStrategic Intent: I am now applying the cleanup by removing the unused `Asset` and `UserShare` models and cleaning up the admin interface, setting the stage for the structural refactoring of the investment and upgrade systems."
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/elite_wealth_capital/settings.py (1 replacements). Here is the updated code:\n...\n    \n    # Local Apps\n    'accounts',\n    'investments',\n    'dashboard',\n    'upgrades',\n    'kyc',\n    'notifications',\n]\n\nMIDDLEWARE = [\n..."
-}

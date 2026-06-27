@@ -1,3 +1,0 @@
-{
-  "output": "Output: from .models import (InvestmentPlan, Investment, Deposit, Withdrawal, WalletAddress,\nProcess Group PGID: 79905"
-}

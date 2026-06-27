@@ -1,3 +1,0 @@
-{
-  "output": "Output:     @staticmethod\n    def get_tier_benefits(tier):\n        \"\"\"Get benefits for each tier\"\"\"\n        benefits = {\n            'intermediate': {\n                'roi_boost': '5%',\n                'support': 'Priority Support',\n                'insights': 'Weekly Market Insights',\n            },\n            'advanced': {\n                'roi_boost': '10%',\n                'support': '24/7 Support',\n                'insights': 'Daily Market Insights',\n                'fees': 'Lower Transaction Fees',\n            },\n            'vip': {\n                'roi_boost': '15%',\n                'support': 'Personal Account Manager',\n                'insights': 'Exclusive Investment Plans',\nProcess Group PGID: 89533"
-}

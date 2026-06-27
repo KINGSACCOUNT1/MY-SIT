@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/elite_wealth_capital/urls.py (1 replacements). Here is the updated code:\n...\n    path('investments/confirm-withdrawal/<str:token>/', investments_views.confirm_withdrawal, name='confirm_withdrawal'),\n    \n    # KYC\n    path('kyc/', include('kyc.urls')),\n    \n    # Account Upgrades\n    path('upgrades/', include('upgrades.urls')),\n    \n    # Notifications\n    path('notifications/', include('notifications.urls')),\n]\n\n# Serve media files in development\n..."
-}

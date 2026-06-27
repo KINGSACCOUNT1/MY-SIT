@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/admin.py (1 replacements). Here is the updated code:\n...\n    search_fields = ['loan__user__email']\n    readonly_fields = ['loan', 'created_at']\n    list_select_related = ['loan', 'loan__user']\n\n\n"
-}

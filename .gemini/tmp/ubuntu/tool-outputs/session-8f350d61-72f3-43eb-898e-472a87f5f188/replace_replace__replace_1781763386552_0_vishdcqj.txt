@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/views.py (1 replacements). Here is the updated code:\n...\n    if not (is_jpeg or is_png or is_pdf):\n        raise ValidationError(f'{field_name} is not a valid image or PDF file')\n\n\ndef plans_list(request):\n    \"\"\"List all investment plans sorted by minimum amount\"\"\"\n    plans = InvestmentPlan.objects.filter(is_active=True).order_by('min_amount')\n    category = request.GET.get('category', None)\n    if category:\n        plans = plans.filter(category=category)\n    return render(request, 'investments/plans.html', {'plans': plans, 'category': category})\n\n..."
-}

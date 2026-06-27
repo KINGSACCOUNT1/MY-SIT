@@ -1,3 +1,0 @@
-{
-  "output": "Output:             'fields': ('status', 'rejection_reason', 'processed_by', 'processed_at'),\n            upgrade.rejection_reason = 'Rejected by admin'\nProcess Group PGID: 89345"
-}

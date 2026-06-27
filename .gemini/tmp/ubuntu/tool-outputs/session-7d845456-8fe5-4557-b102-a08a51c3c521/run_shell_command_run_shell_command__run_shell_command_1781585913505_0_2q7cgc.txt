@@ -1,3 +1,0 @@
-{
-  "output": "Output: ls: cannot access 'my site/investments/models.py.bak': No such file or directory\nExit Code: 2\nProcess Group PGID: 79951"
-}

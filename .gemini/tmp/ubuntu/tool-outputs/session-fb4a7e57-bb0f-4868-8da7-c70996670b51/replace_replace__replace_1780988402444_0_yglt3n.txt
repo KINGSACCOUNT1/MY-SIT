@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/coach/static/css/style.css (1 replacements). Here is the updated code:\n...\n}\n\n.hero-content-modern {\n    position: relative;\n    z-index: 3;\n}\n\n.hero-badge {\n    display: inline-flex;\n    align-items: center;\n..."
-}

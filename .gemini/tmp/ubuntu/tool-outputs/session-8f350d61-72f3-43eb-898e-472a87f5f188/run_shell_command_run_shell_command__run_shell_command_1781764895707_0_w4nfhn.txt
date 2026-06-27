@@ -1,3 +1,0 @@
-{
-  "output": "Output:     context = {\n        'user': user,\n        'active_investments': active_investments,\n        'recent_deposits': recent_deposits,\n        'recent_withdrawals': recent_withdrawals,\n        'notifications': notifications,\n        'unread_notifications': unread_notifications,\n        'total_invested': total_invested,\n        'total_profit': total_profit,\n        'total_withdrawn': total_withdrawn,\n    }\n    \n    return render(request, 'dashboard/dashboard.html', context)\nProcess Group PGID: 89849"
-}

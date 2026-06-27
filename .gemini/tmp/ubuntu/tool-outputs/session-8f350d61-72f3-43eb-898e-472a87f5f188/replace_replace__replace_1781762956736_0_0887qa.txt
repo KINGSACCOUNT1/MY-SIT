@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/models.py (1 replacements). Here is the updated code:\n...\n            return False\n        \n        return True\n\n\n\n\nclass AgentApplication(models.Model):\n    \"\"\"Agent recruitment applications\"\"\"\n    \n..."
-}

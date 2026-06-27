@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/investments/migrations:\n[DIR] __pycache__\n__init__.py (0 bytes)\n0001_initial.py (20309 bytes)\n0002_investmentplan_category.py (623 bytes)\n0003_cryptoticker_agentapplication_user_and_more.py (4047 bytes)\n0004_add_payment_method_to_deposit.py (838 bytes)\n0005_withdrawal_confirmation_token.py (440 bytes)"
-}

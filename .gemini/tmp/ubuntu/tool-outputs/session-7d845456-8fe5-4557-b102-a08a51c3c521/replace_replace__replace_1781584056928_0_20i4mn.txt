@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/templates/investments/plans.html (1 replacements). Here is the updated code:\n{% extends 'dashboard/base_dashboard.html' %}\n{% load static %}\n{% load humanize %}\n\n{% block title %}Buy Shares{% endblock %}\n\n{% block extra_css %}\n<style>\n    .plans-header {\n        text-align: center;\n..."
-}

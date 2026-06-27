@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/admin.py (1 replacements). Here is the updated code:\n...\nfrom django.db import transaction\nfrom django.db.models import F\nimport csv\nfrom .models import (Investment, Deposit, Withdrawal, WalletAddress,\n                     Loan, LoanRepayment, VirtualCard, Coupon, \n                     AgentApplication, CryptoTicker)\n\n\n@admin.register(Investment)\nclass InvestmentAdmin(admin.ModelAdmin):\n    list_display = ['user', 'plan', 'amount_display', 'expected_profit_display', \n..."
-}

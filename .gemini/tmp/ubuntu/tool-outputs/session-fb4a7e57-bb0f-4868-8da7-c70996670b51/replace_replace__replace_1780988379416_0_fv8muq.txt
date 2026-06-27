@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/coach/templates/home.html (1 replacements). Here is the updated code:\n...\n        </div>\n    </div>\n</footer>\n\n{% endblock %}\n"
-}

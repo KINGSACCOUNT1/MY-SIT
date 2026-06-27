@@ -1,3 +1,0 @@
-{
-  "output": "Output:         \"\"\"Get benefits for each tier\"\"\"\n        benefits = {\n            'intermediate': {\n                'roi_boost': '5%',\n                'support': 'Priority Support',\n                'insights': 'Weekly Market Insights',\n            },\n            'advanced': {\n                'roi_boost': '10%',\n                'support': '24/7 Support',\n                'insights': 'Daily Market Insights',\nProcess Group PGID: 89409"
-}

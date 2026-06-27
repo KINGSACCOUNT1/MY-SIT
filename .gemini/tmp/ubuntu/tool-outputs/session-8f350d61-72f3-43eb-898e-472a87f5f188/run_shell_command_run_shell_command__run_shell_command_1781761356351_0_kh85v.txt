@@ -1,3 +1,0 @@
-{
-  "output": "Output: about.html\nactivity_log.html\nbase_dashboard.html\ncertificates.html\ncertificates_view.html\ncontact.html\ndashboard.html\ndispute.html\nfaq.html\nglobal_presence_info.html\ninstall_app.html\nnews.html\nnews_detail.html\npartner_integrations.html\nprivacy.html\nreviews.html\nsettings.html\nteam.html\nterms.html\ntestimonials_manage.html\ntransactions.html\ntransactions_overview.html\nupgrade_plans.html\nuser_dashboard.html\nProcess Group PGID: 89113"
-}

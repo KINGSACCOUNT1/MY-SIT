@@ -1,3 +1,0 @@
-{
-  "output": "Output: Traceback (most recent call last):\n  File \"/home/ubuntu/my site/manage.py\", line 11, in main\n    from django.core.management import execute_from_command_line\nModuleNotFoundError: No module named 'django'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/ubuntu/my site/manage.py\", line 22, in <module>\n    main()\n    ~~~~^^\n  File \"/home/ubuntu/my site/manage.py\", line 13, in main\n    raise ImportError(\n    ...<3 lines>...\n    ) from exc\nImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?\nExit Code: 1\nProcess Group PGID: 80025"
-}

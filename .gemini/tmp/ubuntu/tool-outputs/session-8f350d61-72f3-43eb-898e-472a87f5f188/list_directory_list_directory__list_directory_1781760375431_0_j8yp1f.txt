@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/accounts:\n[DIR] __pycache__\n[DIR] migrations\n__init__.py (0 bytes)\nadmin.py (5535 bytes)\napps.py (0 bytes)\nbackends.py (1478 bytes)\nemail_notifications.py (55034 bytes)\nmodels.py (11335 bytes)\nurls.py (1578 bytes)\nviews.py (19908 bytes)"
-}

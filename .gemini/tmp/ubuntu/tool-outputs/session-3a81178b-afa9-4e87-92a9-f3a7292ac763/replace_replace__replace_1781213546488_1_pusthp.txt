@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/coach/render.yaml (1 replacements). Here is the updated code:\n...\n      - key: ADMIN_EMAIL\n        value: admin@coachjvtech.us\n      - key: ADMIN_PASSWORD\n        sync: false\n    healthCheckPath: /admin/\n"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output:                 'fees': 'Lower Transaction Fees',\n            },\n            'vip': {\n                'roi_boost': '15%',\n                'support': 'Personal Account Manager',\n                'insights': 'Exclusive Investment Plans',\n                'fees': 'Zero Transaction Fees',\n                'events': 'VIP Events Access',\n            },\n        }\n        return benefits.get(tier, {})\nProcess Group PGID: 79709"
-}

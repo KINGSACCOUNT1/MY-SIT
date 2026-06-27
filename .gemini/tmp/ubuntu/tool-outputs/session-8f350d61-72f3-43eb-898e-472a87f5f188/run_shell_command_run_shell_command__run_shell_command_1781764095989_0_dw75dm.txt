@@ -1,3 +1,0 @@
-{
-  "output": "Output: 50:def plans_list(request):\n51-    \"\"\"List all investment plans sorted by minimum amount\"\"\"\n52-    plans = InvestmentPlan.objects.filter(is_active=True).order_by('min_amount')\n53-    category = request.GET.get('category', None)\n54-    if category:\n55-        plans = plans.filter(category=category)\n56-    return render(request, 'investments/plans.html', {'plans': plans, 'category': category})\n57-\n58-\n59-def sector_page(request, sector):\n60-    \"\"\"Display sector-specific investment opportunities\"\"\"\nProcess Group PGID: 89657"
-}

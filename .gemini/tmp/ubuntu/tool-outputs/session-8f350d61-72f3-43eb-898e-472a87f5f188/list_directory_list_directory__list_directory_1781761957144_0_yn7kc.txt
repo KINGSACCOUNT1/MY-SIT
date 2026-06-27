@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/static:\n[DIR] admin\n[DIR] css\n[DIR] images\n[DIR] js\n[DIR] sounds\n[DIR] videos\ngoogle7e9d2dd92a8559d2.html (53 bytes)\nmanifest.json (2898 bytes)\nrobots.txt (1818 bytes)\nsitemap.xml (2902 bytes)\nsw.js (4522 bytes)"
-}

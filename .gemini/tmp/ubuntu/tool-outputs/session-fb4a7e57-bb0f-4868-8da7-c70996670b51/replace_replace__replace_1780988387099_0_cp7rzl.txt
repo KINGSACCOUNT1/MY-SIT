@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/coach/templates/base.html (1 replacements). Here is the updated code:\n...\n    </script>\n    \n    <!-- Testimonials Popup (from MY-SITE) -->\n    <script src=\"{% static 'js/testimonials-popup.js' %}\"></script>\n    \n    <!-- Crypto Ticker -->\n    <script src=\"{% static 'js/crypto-ticker.js' %}\"></script>\n    \n    {% block extra_js %}{% endblock %}\n</body>\n</html>\n"
-}

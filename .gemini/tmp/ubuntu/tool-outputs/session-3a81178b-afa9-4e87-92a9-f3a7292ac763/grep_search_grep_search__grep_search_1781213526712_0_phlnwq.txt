@@ -1,3 +1,0 @@
-{
-  "output": "No matches found for pattern \"POSTGRES|DATABASE_URL\" in the workspace directory (filter: \"coach/**/*.py\")."
-}

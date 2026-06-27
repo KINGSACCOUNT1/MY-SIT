@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Assessing outstanding tasks and improvement recommendations\"\nTopic summary: ...\n\nStrategic Intent: I will review the existing improvement documentation in the `my site` folder to identify outstanding tasks and provide the user with a prioritized list of recommended next steps."
-}

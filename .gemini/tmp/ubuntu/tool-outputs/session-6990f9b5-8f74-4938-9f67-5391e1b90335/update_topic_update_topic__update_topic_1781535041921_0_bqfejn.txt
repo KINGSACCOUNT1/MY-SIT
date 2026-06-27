@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Implementing Bank Withdrawals & Admin Fixes\"\nTopic summary: I have identified that the withdrawal form is hardcoded to 'crypto' and the admin approval logic in the Django admin panel is missing key functional triggers when status is changed via the dropdown. I am now proceeding to update 'investments/views.py' to handle bank transfer details, and I will subsequently update the 'withdraw.html' template to allow users to select their preferred withdrawal method. I will also enhance the admin approval process to ensure funds are correctly returned on rejection and notifications are sent upon status changes.\n\nStrategic Intent: Updating withdrawal logic to support bank transfers and improving admin approval process."
-}

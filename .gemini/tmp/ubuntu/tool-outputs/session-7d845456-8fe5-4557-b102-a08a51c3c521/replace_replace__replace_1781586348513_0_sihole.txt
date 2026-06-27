@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/management/commands/populate_plans.py (1 replacements). Here is the updated code:\n...\n            {\n                'name': 'Gold Plan',\n                'description': 'Premium returns for high-net-worth individuals',\n                'min_amount': Decimal('15000.00'),\n                'max_amount': Decimal('49999.99'),\n                'daily_roi': Decimal('20.0'),\n                'duration_days': 1,\n                'icon': 'fa-crown',\n                'is_active': True,\n                'is_featured': True,\n                'sort_order': 4\n            },\n..."
-}

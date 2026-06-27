@@ -1,3 +1,0 @@
-{
-  "error": "params must have required property 'strategic_intent'"
-}

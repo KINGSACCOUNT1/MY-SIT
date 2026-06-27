@@ -1,3 +1,0 @@
-{
-  "output": "Output: __init__.py   models.py\n__pycache__/  models.py.backup_corrupt\nadmin.py      signals.py\nadmin.py.bak  tasks.py\nadmin_api.py  templatetags/\napps.py       urls.py\nfixtures/     utils.py\nmanagement/   views.py\nmigrations/\nProcess Group PGID: 88582"
-}

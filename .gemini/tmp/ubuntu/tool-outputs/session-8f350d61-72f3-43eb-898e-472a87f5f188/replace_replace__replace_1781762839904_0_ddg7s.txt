@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/models.py (1 replacements). Here is the updated code:\n...\nfrom django.core.cache import cache\nfrom django_cryptography.fields import encrypt\nfrom django.core.cache import cache\n\n\n\n\nclass Deposit(models.Model):\n    \"\"\"User deposits\"\"\"\n    \n..."
-}

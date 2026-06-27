@@ -1,3 +1,0 @@
-{
-  "output": "Output: class Asset(models.Model):\n    class Meta:\nclass UserShare(models.Model):\n    class Meta:\nclass Deposit(models.Model):\n    class Meta:\nclass Withdrawal(models.Model):\n    class Meta:\nclass WalletAddress(models.Model):\n    class Meta:\nclass Loan(models.Model):\n    class Meta:\nclass LoanRepayment(models.Model):\n    class Meta:\nclass VirtualCard(models.Model):\n    class Meta:\nclass Coupon(models.Model):\n    class Meta:\nclass CouponUsage(models.Model):\n    class Meta:\nclass AgentApplication(models.Model):\n    class Meta:\nclass AccountUpgrade(models.Model):\n    class Meta:\nclass CryptoTicker(models.Model):\n    class Meta:\nProcess Group PGID: 79973"
-}

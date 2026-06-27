@@ -1,3 +1,0 @@
-{
-  "output": "Output: Service ID: srv-d8bapo8g4nts73fbj1ng\n[]\n---\nService ID: srv-d860ief7f7vs73e6jmt0\n[]\n---\nService ID: srv-d82kis9j2pic73al4bog\n[]\n---\nService ID: srv-d7tc4qn7f7vs73fbdvmg\n[]\n---\nService ID: srv-d7qoa5n7f7vs73cdnqv0\n[]\n---\nService ID: srv-d7qnhtv7f7vs73cdb1c0\n[]\n---\nService ID: srv-d8hklbtckfvc73arupt0\n[]\n---\nProcess Group PGID: 55410"
-}

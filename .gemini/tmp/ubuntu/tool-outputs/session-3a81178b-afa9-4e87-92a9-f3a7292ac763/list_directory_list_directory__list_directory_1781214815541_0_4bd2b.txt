@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/coach/templates:\n[DIR] auth\n[DIR] dashboard\nacademy.html (11997 bytes)\nbase.html (2195 bytes)\ncertificate.html (10709 bytes)\ndashboard.html (15260 bytes)\nhome.html (32011 bytes)\nmining.html (15146 bytes)\np2p.html (5480 bytes)\nplans.html (17465 bytes)\nsupport.html (9386 bytes)\ntrading.html (9655 bytes)\nwallet.html (6540 bytes)"
-}

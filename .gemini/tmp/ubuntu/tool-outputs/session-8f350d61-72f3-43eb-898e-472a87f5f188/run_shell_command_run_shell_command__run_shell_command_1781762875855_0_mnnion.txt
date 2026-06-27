@@ -1,3 +1,0 @@
-{
-  "output": "Output: 9:                     Loan, LoanRepayment, VirtualCard, Coupon, CouponUsage, \n562:@admin.register(CouponUsage)\n563:class CouponUsageAdmin(admin.ModelAdmin):\nProcess Group PGID: 89401"
-}

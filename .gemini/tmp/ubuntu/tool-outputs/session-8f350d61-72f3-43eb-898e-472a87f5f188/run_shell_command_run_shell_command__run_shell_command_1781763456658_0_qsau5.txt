@@ -1,3 +1,0 @@
-{
-  "output": "Output:     created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    \n    class Meta:\n        verbose_name = 'Account Upgrade'\n        verbose_name_plural = 'Account Upgrades'\n        ordering = ['-created_at']\n    \nProcess Group PGID: 89521"
-}

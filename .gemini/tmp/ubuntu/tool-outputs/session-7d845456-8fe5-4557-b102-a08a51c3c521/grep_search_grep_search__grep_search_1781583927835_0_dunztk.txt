@@ -1,3 +1,0 @@
-{
-  "error": "Invalid regular expression pattern provided: (?i)invest. Error: Invalid regular expression: /(?i)invest/: Invalid group"
-}

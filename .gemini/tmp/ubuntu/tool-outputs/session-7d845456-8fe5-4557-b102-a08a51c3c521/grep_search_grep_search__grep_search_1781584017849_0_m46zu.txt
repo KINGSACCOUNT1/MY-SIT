@@ -1,3 +1,0 @@
-{
-  "output": "No matches found for pattern \"Invest Now\" in the workspace directory (filter: \"my site/templates/dashboard/user_dashboard.html\")."
-}

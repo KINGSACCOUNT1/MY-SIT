@@ -1,3 +1,0 @@
-{
-  "output": "Output: [\n{\n  \"model\": \"investments.investmentplan\",\n  \"pk\": 1,\n  \"fields\": {\n    \"name\": \"Starter Mild Plan\",\n    \"description\": \"Perfect for beginners. Start your investment journey with our entry-level plan. Low risk, guaranteed returns. Earn 10% profit after just 24 hours!\",\n    \"category\": \"crypto\",\n    \"icon\": \"fa-seedling\",\n    \"min_amount\": \"50.00\",\n    \"max_amount\": \"999.00\",\n    \"daily_roi\": \"10.00\",\n    \"duration_days\": 1,\n    \"is_active\": true,\n    \"is_featured\": true,\n    \"sort_order\": 1,\n    \"created_at\": \"2026-03-31T06:57:00.518Z\",\n    \"updated_at\": \"2026-03-31T06:57:00.518Z\"\n  }\n}\n]\nProcess Group PGID: 79825"
-}

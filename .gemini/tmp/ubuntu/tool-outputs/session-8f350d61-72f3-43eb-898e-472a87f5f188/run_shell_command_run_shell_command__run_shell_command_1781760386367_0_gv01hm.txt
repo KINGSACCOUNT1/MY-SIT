@@ -1,3 +1,0 @@
-{
-  "output": "Output: 11:class CustomUserManager(BaseUserManager):\n37:class CustomUser(AbstractBaseUser, PermissionsMixin):\nProcess Group PGID: 88558"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Project Roadmap Initialization and Implementation Phase 1\"\nTopic summary: ...\n\nStrategic Intent: I am documenting the agreed-upon development roadmap in the project memory and beginning the implementation of the first phase: the unified investment dashboard and PDF receipt generation."
-}

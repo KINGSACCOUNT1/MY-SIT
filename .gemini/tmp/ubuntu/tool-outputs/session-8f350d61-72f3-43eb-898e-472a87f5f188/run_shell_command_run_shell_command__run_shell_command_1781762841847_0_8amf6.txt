@@ -1,3 +1,0 @@
-{
-  "output": "Output: 8-from .models import (Investment, Deposit, Withdrawal, WalletAddress,\n9-                     Loan, LoanRepayment, VirtualCard, Coupon, CouponUsage, \n10:                     AgentApplication, AccountUpgrade, CryptoTicker, Asset, UserShare)\n11-\n12-\n13:@admin.register(Asset)\n14:class AssetAdmin(admin.ModelAdmin):\n15-    list_display = ['name', 'ticker', 'category', 'price_per_share', 'is_active']\n16-    list_filter = ['category', 'is_active']\n17-    search_fields = ['name', 'ticker']\n18-    list_editable = ['is_active', 'price_per_share']\n19-\nProcess Group PGID: 89389"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Found 1 file(s) matching \"my site/**/settings.py\" within /home/ubuntu, sorted by modification time (newest first):\n/home/ubuntu/my site/elite_wealth_capital/settings.py"
-}

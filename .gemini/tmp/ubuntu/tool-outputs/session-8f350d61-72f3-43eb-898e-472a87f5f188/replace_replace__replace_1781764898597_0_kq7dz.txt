@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/dashboard/views.py (1 replacements). Here is the updated code:\n...\n        'notifications': notifications,\n        'unread_notifications': unread_notifications,\n        'total_invested': total_invested,\n        'total_profit': total_profit,\n        'total_withdrawn': total_withdrawn,\n        'referral_bonus': user.referral_bonus,\n    }\n    \n    return render(request, 'dashboard/dashboard.html', context)\n\n\n..."
-}

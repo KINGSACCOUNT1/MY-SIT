@@ -1,3 +1,0 @@
-{
-  "output": "Output:     ACCOUNT_TYPE_CHOICES = [\n        ('starter', 'Starter Plan'),           # $30-399\n        ('advance', 'Advance Plan'),           # $400-999\n        ('intro', 'Intro Plan'),               # $1000-2999\n        ('region', 'Region Plan'),             # $3000-4999\n        ('pro', 'Pro Plan'),                   # $5000-9999\n        ('premium', 'Premium Plan'),           # $10000-24999\n        ('executive', 'Executive Plan'),       # $25000-49999\n        ('elite', 'Elite Plan'),               # $50000-99999\n        ('platinum', 'Platinum Plan'),         # $100000-249999\n        ('diamond', 'Diamond Plan'),           # $250000+\n    ]\nProcess Group PGID: 89752"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Finalizing Functional Separation: Tiered Access Control\"\nTopic summary: ...\n\nStrategic Intent: I am now implementing the prerequisite logic to restrict 'Buy Shares' access based on the user's account tier, completing the requested functional separation between upgrades and investments."
-}

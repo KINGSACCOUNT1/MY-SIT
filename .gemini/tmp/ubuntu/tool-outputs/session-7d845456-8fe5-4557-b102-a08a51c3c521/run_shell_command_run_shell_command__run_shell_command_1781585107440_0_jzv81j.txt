@@ -1,3 +1,0 @@
-{
-  "output": "Output: my site/investments/admin.py.bak:class InvestmentAdmin(admin.ModelAdmin):\nmy site/investments/apps.py:class InvestmentsConfig(AppConfig):\nProcess Group PGID: 79791"
-}

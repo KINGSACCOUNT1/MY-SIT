@@ -1,3 +1,0 @@
-{
-  "output": "Output:     processed_by = models.ForeignKey(\n        settings.AUTH_USER_MODEL,\n        on_delete=models.SET_NULL,\n        null=True,\n        blank=True,\n        related_name='processed_upgrades'\n    )\n    processed_at = models.DateTimeField(null=True, blank=True)\n    admin_note = models.TextField(blank=True)\n    \n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    \n    class Meta:\n        verbose_name = 'Account Upgrade'\nProcess Group PGID: 89341"
-}

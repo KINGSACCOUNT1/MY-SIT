@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Analyzing Investment and Withdrawal Logic\"\nTopic summary: I'm examining 'investments/models.py' and 'investments/views.py' to understand how investments, deposits, and withdrawals are handled. I'll focus on whether withdrawals immediately deduct from the user's balance and how profits are calculated and credited, as these are critical for the application's financial integrity.\n\nStrategic Intent: Analyzing investment logic and withdrawal processing for financial accuracy and security."
-}

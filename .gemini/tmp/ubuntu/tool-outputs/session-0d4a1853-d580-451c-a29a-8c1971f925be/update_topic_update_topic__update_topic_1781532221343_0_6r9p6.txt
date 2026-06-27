@@ -1,3 +1,0 @@
-{
-  "output": "Current topic: \"Auditing Middleware and Context Processors\"\nTopic summary: I'm investigating 'elite_wealth_capital/bot_protection.py' to evaluate the bot protection and IP blocking logic, and 'elite_wealth_capital/context_processors.py' to ensure they don't introduce performance bottlenecks or security leaks. These components are critical for the application's stability and security.\n\nStrategic Intent: Auditing middleware and context processors for potential errors and vulnerabilities."
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: [{\"cursor\":\"Mucm-ySBQCBtbDBqczMyYzczY3BjYTIw\",\"customDomain\":{\"createdAt\":\"2026-06-05T22:19:00.63392Z\",\"domainType\":\"subdomain\",\"id\":\"cdm-d8hkml0js32c73cpca20\",\"name\":\"www.coachjvtech.us\",\"publicSuffix\":\"us\",\"redirectForName\":\"coachjvtech.us\",\"verificationStatus\":\"unverified\"}},{\"cursor\":\"Mucm-ySBQCBtbDBqczMyYzczY3BjYTAw\",\"customDomain\":{\"createdAt\":\"2026-06-05T22:19:00.615351Z\",\"domainType\":\"apex\",\"id\":\"cdm-d8hkml0js32c73cpca00\",\"name\":\"coachjvtech.us\",\"publicSuffix\":\"us\",\"redirectForName\":\"\",\"verificationStatus\":\"verified\"}}]\nProcess Group PGID: 55322"
-}

@@ -1,3 +1,0 @@
-{
-  "output": "Output: @admin.register(CouponUsage)\nclass CouponUsageAdmin(admin.ModelAdmin):\n    list_display = ['coupon', 'user', 'used_at']\n    list_filter = ['used_at']\n    search_fields = ['user__email', 'coupon__code']\n    readonly_fields = ['coupon', 'user', 'used_at']\n    list_select_related = ['coupon', 'user']\nProcess Group PGID: 89405"
-}

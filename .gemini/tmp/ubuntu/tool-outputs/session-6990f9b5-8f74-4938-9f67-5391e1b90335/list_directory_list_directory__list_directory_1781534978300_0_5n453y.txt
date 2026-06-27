@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/my site/templates/investments:\nagent.html (10735 bytes)\ncards.html (8585 bytes)\ndeposit_status.html (10088 bytes)\ndeposit.html (25569 bytes)\ninvest.html (6885 bytes)\nloans.html (6633 bytes)\nmy_investments.html (9726 bytes)\npayment_confirmed.html (8880 bytes)\npending_payment.html (6019 bytes)\nplans.html (9683 bytes)\nsector.html (9337 bytes)\nwithdraw.html (8331 bytes)"
-}

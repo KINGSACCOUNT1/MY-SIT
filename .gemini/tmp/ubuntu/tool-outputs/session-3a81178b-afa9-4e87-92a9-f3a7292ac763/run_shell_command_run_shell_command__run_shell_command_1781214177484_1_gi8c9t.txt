@@ -1,3 +1,0 @@
-{
-  "output": "Output: {\"message\":\"not found: custom domain: www.amiragold.trade\"}\n{\"message\":\"not found: custom domain: www.offshorebank.us\"}\n{\"message\":\"not found: custom domain: www.dailyfundzboost.trade\"}\n{\"message\":\"not found: custom domain: www.elitewealthcapita.uk\"}\nProcess Group PGID: 55391"
-}

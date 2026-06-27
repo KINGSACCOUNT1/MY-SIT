@@ -1,3 +1,0 @@
-{
-  "output": "Successfully modified file: /home/ubuntu/my site/investments/management/commands/populate_plans.py (1 replacements). Here is the updated code:\n...\n            {\n                'name': 'Silver Plan',\n                'description': 'Enhanced returns for serious investors',\n                'min_amount': Decimal('5000.00'),\n                'max_amount': Decimal('14999.99'),\n                'daily_roi': Decimal('20.0'),\n                'duration_days': 1,\n                'icon': 'fa-gem',\n                'is_active': True,\n                'is_featured': True,\n                'sort_order': 3\n            },\n..."
-}

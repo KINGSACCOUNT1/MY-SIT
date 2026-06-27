@@ -1,3 +1,0 @@
-{
-  "output": "Directory listing for /home/ubuntu/coach/venv/bin:\npython (7473032 bytes)\npython3 (7473032 bytes)\npython3.14 (7473032 bytes)\n𝜋thon (7473032 bytes)"
-}
