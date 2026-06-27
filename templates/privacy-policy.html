@@ -5,361 +5,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Elite Wealth Capital</title>
-    <meta name="description" content="Learn how Elite Wealth Capital collects, uses, and protects your personal information.">
-    <link rel="icon" type="image/webp" href="{% static 'images/logo.webp' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/logo.webp' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/mobile.css' %}">
-    <style>
-        body { background: linear-gradient(135deg, #0A1F44 0%, #1e293b 100%); min-height: 100vh; color: #f1f5f9; font-family: 'Inter', sans-serif; }
-        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10,22,40,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,215,0,0.25); }
-        .navbar-container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 70px; }
-        .navbar-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-        .navbar-logo img { height: 40px; width: 40px; object-fit: contain; }
-        .navbar-logo-text { display: flex; flex-direction: column; line-height: 1; }
-        .navbar-logo-text span:first-child { font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-        .navbar-logo-text span:last-child { font-size: 0.55rem; font-weight: 700; color: #FFD700; letter-spacing: 2px; }
-        .navbar-links { display: flex; gap: 0.25rem; align-items: center; }
-        .nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.75rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
-        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
-        .navbar-actions { display: flex; gap: 0.75rem; align-items: center; }
-        .btn-nav-login { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s; }
-        .btn-nav-login:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .btn-nav-signup { background: linear-gradient(135deg,#FFD700,#DAA520); color: #0A1F44; text-decoration: none; font-size: 0.9rem; font-weight: 700; padding: 0.5rem 1.25rem; border-radius: 6px; transition: opacity 0.2s; }
-        .btn-nav-signup:hover { opacity: 0.9; }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-        .mobile-nav { display: none; background: rgba(10,22,40,0.98); padding: 1rem 1.5rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
-        .mobile-nav a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .mobile-nav a:hover { color: #FFD700; }
-        .mobile-nav .mobile-btns { display: flex; gap: 0.75rem; margin-top: 1rem; }
-        .mobile-nav .mobile-btns a { border: none; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-weight: 700; font-size: 0.95rem; flex: 1; }
-        .mobile-nav .mobile-btns .mb-login { background: rgba(255,255,255,0.1); color: #fff; }
-        .mobile-nav .mobile-btns .mb-signup { background: linear-gradient(135deg,#FFD700,#DAA520); color: #0A1F44; }
-        @media (max-width: 900px) { .navbar-links, .navbar-actions { display: none; } .mobile-menu-btn { display: flex; } .mobile-nav.open { display: block; } }
-
-        /* Page styles */
-        .page-hero { text-align: center; padding: 4rem 1.5rem 2.5rem; }
-        .page-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
-        .page-hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
-        .page-hero .gold-line { width: 60px; height: 3px; background: linear-gradient(90deg,#FFD700,#DAA520); margin: 1rem auto 0; border-radius: 2px; }
-
-        .content-wrapper { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
-        .toc-card { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
-        .toc-card h3 { color: #FFD700; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px; }
-        .toc-card ol { padding-left: 1.25rem; margin: 0; }
-        .toc-card ol li { margin-bottom: 0.4rem; }
-        .toc-card ol li a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .toc-card ol li a:hover { color: #FFD700; }
-
-        .privacy-section { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; transition: border-color 0.2s; }
-        .privacy-section:hover { border-color: rgba(255,215,0,0.2); }
-        .privacy-section h2 { font-size: 1.15rem; font-weight: 700; color: #FFD700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
-        .privacy-section h2 .section-num { background: rgba(255,215,0,0.15); color: #FFD700; width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
-        .privacy-section h3 { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9); margin: 1rem 0 0.5rem; }
-        .privacy-section p, .privacy-section li { color: rgba(255,255,255,0.75); line-height: 1.7; font-size: 0.95rem; }
-        .privacy-section ul, .privacy-section ol { padding-left: 1.5rem; margin: 0.75rem 0; }
-        .privacy-section li { margin-bottom: 0.35rem; }
-
-        .rights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .right-item { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.15); border-radius: 10px; padding: 1rem; }
-        .right-item h4 { color: #FFD700; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
-        .right-item p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; }
-
-        .contact-info { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; }
-        .contact-info h2 { color: #FFD700; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
-        .contact-info p, .contact-info a { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-        .contact-info a { color: #FFD700; text-decoration: none; }
-        .contact-info a:hover { text-decoration: underline; }
-
-        .site-footer { background: rgba(5,10,20,0.98); border-top: 1px solid rgba(255,215,0,0.2); padding: 3rem 1.5rem 1.5rem; }
-        .footer-inner { max-width: 1100px; margin: 0 auto; }
-        .footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
-        .footer-col h4 { color: #FFD700; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col ul li { margin-bottom: 0.5rem; }
-        .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: #FFD700; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.8rem; }
-    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="{% url 'home' %}" class="navbar-logo">
-                <img src="{% static 'images/logo.webp' %}" alt="Elite Wealth Capital">
-                <div class="navbar-logo-text"><span>ELITE</span><span>WEALTH CAPITAL</span></div>
-            </a>
-            <div class="navbar-links">
-                <a href="{% url 'home' %}" class="nav-link">Home</a>
-                <a href="{% url 'about' %}" class="nav-link">About</a>
-                <a href="{% url 'investment_plans' %}" class="nav-link">Plans</a>
-                <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
-                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-            </div>
-            <div class="navbar-actions">
-                <a href="{% url 'login' %}" class="btn-nav-login">Login</a>
-                <a href="{% url 'signup' %}" class="btn-nav-signup">Get Started →</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="mobile-nav" id="mobileNav">
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'investment_plans' %}">Plans</a>
-            <a href="{% url 'faq' %}">FAQ</a>
-            <a href="{% url 'contact' %}">Contact</a>
-            <div class="mobile-btns">
-                <a href="{% url 'login' %}" class="mb-login">Login</a>
-                <a href="{% url 'signup' %}" class="mb-signup">Sign Up</a>
-            </div>
+    <nav>
+        <div class="nav-container">
+            <img src="{% static 'images/logo.webp' %}" alt="Elite Wealth Capital" class="logo" width="40" height="40">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'investment_plans' %}">Plans</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="page-hero">
-        <h1><i class="fas fa-shield-alt" style="color:#FFD700; margin-right:0.5rem;"></i>Privacy Policy</h1>
-        <p>Last updated: January 2026 &nbsp;|&nbsp; How we collect, use, and protect your personal information</p>
-        <div class="gold-line"></div>
-    </section>
+    <main>
+        <section class="hero-section">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: [Date]</p>
+        </section>
 
-    <!-- Content -->
-    <div class="content-wrapper">
-        <!-- Table of Contents -->
-        <div class="toc-card">
-            <h3><i class="fas fa-list me-2"></i>Table of Contents</h3>
-            <ol>
-                <li><a href="#collection">Information We Collect</a></li>
-                <li><a href="#usage">How We Use Your Information</a></li>
-                <li><a href="#sharing">Information Sharing</a></li>
-                <li><a href="#security">Data Security</a></li>
-                <li><a href="#retention">Data Retention</a></li>
-                <li><a href="#rights">Your Rights</a></li>
-                <li><a href="#cookies">Cookies and Tracking</a></li>
-                <li><a href="#international">International Transfers</a></li>
-                <li><a href="#children">Children's Privacy</a></li>
-                <li><a href="#changes">Changes to This Policy</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ol>
-        </div>
+        <section class="privacy-content">
+            <div class="privacy-section">
+                <h2>1. Information We Collect</h2>
+                <p>We collect information necessary to provide our investment services and comply with regulatory requirements.</p>
+                
+                <h3>Personal Information</h3>
+                <ul>
+                    <li>Name, address, phone number, and email address</li>
+                    <li>Date of birth and government-issued identification</li>
+                    <li>Financial information and investment experience</li>
+                    <li>Employment and income details</li>
+                </ul>
 
-        <div class="privacy-section" id="collection">
-            <h2><span class="section-num">1</span>Information We Collect</h2>
-            <p>We collect information necessary to provide our investment services and comply with regulatory requirements. The categories of personal data we may collect include:</p>
-            <h3>Personal &amp; Identity Information</h3>
-            <ul>
-                <li>Full name, date of birth, and nationality</li>
-                <li>Email address, phone number, and physical address</li>
-                <li>Government-issued identification (passport, driver's licence, national ID)</li>
-                <li>Selfie / live photo for identity verification</li>
-            </ul>
-            <h3>Financial Information</h3>
-            <ul>
-                <li>Investment history, transaction records, and account balances</li>
-                <li>Cryptocurrency wallet addresses used for deposits</li>
-                <li>Bank or payment method details for withdrawals</li>
-                <li>Source of funds documentation (where required by AML regulations)</li>
-            </ul>
-            <h3>Technical Information</h3>
-            <ul>
-                <li>IP address, browser type, and device information</li>
-                <li>Login timestamps and platform activity logs</li>
-                <li>Cookies and similar tracking technologies</li>
-            </ul>
-        </div>
-
-        <div class="privacy-section" id="usage">
-            <h2><span class="section-num">2</span>How We Use Your Information</h2>
-            <p>Your personal data is used for the following purposes:</p>
-            <ul>
-                <li><strong>Service delivery:</strong> Account creation, KYC verification, processing investments, deposits, and withdrawals</li>
-                <li><strong>Legal compliance:</strong> Anti-money laundering (AML) checks, sanctions screening, and regulatory reporting</li>
-                <li><strong>Security:</strong> Fraud detection, account protection, and incident investigation</li>
-                <li><strong>Communication:</strong> Transaction notifications, account alerts, and customer support</li>
-                <li><strong>Improvement:</strong> Platform analytics, performance monitoring, and feature development</li>
-                <li><strong>Marketing:</strong> Promotional communications (only with your consent; unsubscribe available at any time)</li>
-            </ul>
-        </div>
-
-        <div class="privacy-section" id="sharing">
-            <h2><span class="section-num">3</span>Information Sharing</h2>
-            <p>We do not sell your personal information to third parties. We may share your data in limited circumstances:</p>
-            <ul>
-                <li><strong>Regulatory authorities:</strong> Where required by law (e.g., FCA, HMRC, SARS, or other financial regulators)</li>
-                <li><strong>Service providers:</strong> Identity verification services, payment processors, and cloud infrastructure providers bound by confidentiality agreements</li>
-                <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or asset sale (with prior notice to affected users)</li>
-                <li><strong>Fraud prevention:</strong> Sharing data with law enforcement or fraud prevention agencies where legally required</li>
-                <li><strong>With your consent:</strong> Any other sharing only occurs with your explicit prior consent</li>
-            </ul>
-        </div>
-
-        <div class="privacy-section" id="security">
-            <h2><span class="section-num">4</span>Data Security</h2>
-            <p>We implement industry-standard security measures to protect your personal data:</p>
-            <ul>
-                <li>256-bit TLS/SSL encryption for all data in transit</li>
-                <li>AES-256 encryption for sensitive data at rest</li>
-                <li>Multi-factor authentication (MFA) for admin access</li>
-                <li>Regular third-party security audits and penetration testing</li>
-                <li>Geographically distributed, ISO 27001-compliant data centres</li>
-                <li>Employee background checks and mandatory confidentiality agreements</li>
-                <li>Documented incident response plan for security breaches</li>
-            </ul>
-            <p>Despite our best efforts, no transmission over the internet is 100% secure. Please report any suspected security incidents to <a href="mailto:security@elitewealthcapita.uk">security@elitewealthcapita.uk</a>.</p>
-        </div>
-
-        <div class="privacy-section" id="retention">
-            <h2><span class="section-num">5</span>Data Retention</h2>
-            <p>We retain your data only as long as necessary to provide services and meet legal obligations:</p>
-            <ul>
-                <li><strong>Account &amp; identity data:</strong> Duration of relationship plus 7 years (regulatory requirement)</li>
-                <li><strong>Transaction records:</strong> 7 years from the date of each transaction</li>
-                <li><strong>Communication logs:</strong> 3 years from the date of last contact</li>
-                <li><strong>KYC documents:</strong> 5 years after account closure</li>
-                <li><strong>Marketing preferences:</strong> Until you withdraw consent or close your account</li>
-            </ul>
-            <p>When data is no longer needed, it is securely deleted or anonymised.</p>
-        </div>
-
-        <div class="privacy-section" id="rights">
-            <h2><span class="section-num">6</span>Your Rights</h2>
-            <p>Depending on your jurisdiction, you may have the following rights regarding your personal data. Contact us to exercise any of these rights:</p>
-            <div class="rights-grid">
-                <div class="right-item">
-                    <h4><i class="fas fa-eye me-1"></i>Access</h4>
-                    <p>Request a copy of the personal data we hold about you.</p>
-                </div>
-                <div class="right-item">
-                    <h4><i class="fas fa-edit me-1"></i>Correction</h4>
-                    <p>Request correction of inaccurate or incomplete data.</p>
-                </div>
-                <div class="right-item">
-                    <h4><i class="fas fa-trash-alt me-1"></i>Deletion</h4>
-                    <p>Request deletion of your data (subject to legal retention obligations).</p>
-                </div>
-                <div class="right-item">
-                    <h4><i class="fas fa-download me-1"></i>Portability</h4>
-                    <p>Receive your data in a machine-readable format.</p>
-                </div>
-                <div class="right-item">
-                    <h4><i class="fas fa-ban me-1"></i>Objection</h4>
-                    <p>Object to certain processing activities (e.g., direct marketing).</p>
-                </div>
-                <div class="right-item">
-                    <h4><i class="fas fa-pause-circle me-1"></i>Restriction</h4>
-                    <p>Request that we limit how we process your data.</p>
-                </div>
+                <h3>Technical Information</h3>
+                <ul>
+                    <li>IP address, browser type, and device information</li>
+                    <li>Login times and platform usage patterns</li>
+                    <li>Cookies and similar tracking technologies</li>
+                </ul>
             </div>
-            <p style="margin-top:1rem;">To exercise your rights, email <a href="mailto:privacy@elitewealthcapita.uk">privacy@elitewealthcapita.uk</a>. We will respond within 30 days. You may also lodge a complaint with your local data protection authority (e.g., the ICO in the UK).</p>
-        </div>
 
-        <div class="privacy-section" id="cookies">
-            <h2><span class="section-num">7</span>Cookies and Tracking</h2>
-            <p>We use cookies and similar technologies to enhance your experience on our platform:</p>
-            <ul>
-                <li><strong>Essential cookies:</strong> Required for platform functionality (login sessions, CSRF protection)</li>
-                <li><strong>Analytics cookies:</strong> Help us understand how users interact with the platform (e.g., Google Analytics)</li>
-                <li><strong>Preference cookies:</strong> Remember your language, theme, and other settings</li>
-                <li><strong>Security cookies:</strong> Assist in fraud detection and account protection</li>
-            </ul>
-            <p>You can manage cookie preferences through your browser settings or our cookie consent banner. Disabling essential cookies may impact your ability to use the platform.</p>
-        </div>
-
-        <div class="privacy-section" id="international">
-            <h2><span class="section-num">8</span>International Transfers</h2>
-            <p>Your data may be transferred to and processed in countries outside your home jurisdiction where we or our service providers operate. We ensure that all international transfers comply with applicable data protection laws by:</p>
-            <ul>
-                <li>Using Standard Contractual Clauses (SCCs) approved by the European Commission</li>
-                <li>Transferring only to countries with adequate data protection standards</li>
-                <li>Maintaining contractual protections with all third-party processors</li>
-            </ul>
-        </div>
-
-        <div class="privacy-section" id="children">
-            <h2><span class="section-num">9</span>Children's Privacy</h2>
-            <p>Our services are not directed to individuals under 18 years of age. We do not knowingly collect personal information from children. If you believe a child has provided us with their information, please contact us immediately at <a href="mailto:privacy@elitewealthcapita.uk">privacy@elitewealthcapita.uk</a> and we will delete the data promptly.</p>
-        </div>
-
-        <div class="privacy-section" id="changes">
-            <h2><span class="section-num">10</span>Changes to This Policy</h2>
-            <p>We may update this Privacy Policy periodically to reflect changes in our practices or applicable law. We will notify you of significant changes via:</p>
-            <ul>
-                <li>Email notification to your registered address</li>
-                <li>A prominent notice within your account dashboard</li>
-                <li>An updated "Last updated" date at the top of this page</li>
-            </ul>
-            <p>Your continued use of our services after any changes constitutes acceptance of the updated policy.</p>
-        </div>
-
-        <div class="contact-info" id="contact">
-            <h2><i class="fas fa-envelope me-2"></i>11. Contact Us</h2>
-            <p>For privacy-related queries or to exercise your data rights, please contact our Data Protection team:</p>
-            <p><strong>Email:</strong> <a href="mailto:privacy@elitewealthcapita.uk">privacy@elitewealthcapita.uk</a></p>
-            <p><strong>Security:</strong> <a href="mailto:security@elitewealthcapita.uk">security@elitewealthcapita.uk</a></p>
-            <p><strong>Address:</strong> 71–75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom</p>
-            <p><strong>Phone:</strong> +44 20 7946 0958</p>
-            <p style="margin-top:1rem;"><a href="{% url 'terms' %}" style="color:#FFD700;"><i class="fas fa-file-contract me-1"></i>View our Terms &amp; Conditions →</a></p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-cols">
-                <div class="footer-col">
-                    <h4>Elite Wealth Capital</h4>
-                    <ul>
-                        <li><a href="{% url 'about' %}">About Us</a></li>
-                        <li><a href="{% url 'team' %}">Leadership Team</a></li>
-                        <li><a href="{% url 'partners' %}">Global Partners</a></li>
-                        <li><a href="{% url 'news' %}">Latest News</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="{% url 'investment_plans' %}">Investment Plans</a></li>
-                        <li><a href="{% url 'reviews' %}">Client Reviews</a></li>
-                        <li><a href="{% url 'faq' %}">FAQ</a></li>
-                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="{% url 'terms' %}">Terms of Service</a></li>
-                        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-                    </ul>
-                </div>
+            <div class="privacy-section">
+                <h2>2. How We Use Your Information</h2>
+                <p>Your information is used to provide, maintain, and improve our services:</p>
+                <ul>
+                    <li>Account creation and identity verification</li>
+                    <li>Processing investments, deposits, and withdrawals</li>
+                    <li>Regulatory compliance and anti-money laundering checks</li>
+                    <li>Customer support and communication</li>
+                    <li>Platform security and fraud prevention</li>
+                    <li>Service improvements and analytics</li>
+                </ul>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Elite Wealth Capital Inc. All rights reserved.</p>
-                <p style="margin-top:0.5rem;">Investment involves risk. Past performance does not guarantee future results.</p>
-            </div>
-        </div>
-    </footer>
 
-    <script src="{% static 'js/main.js' %}"></script>
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.getElementById('mobileMenuBtn');
-            const isOpen = nav.classList.toggle('open');
-            btn.setAttribute('aria-expanded', isOpen);
-        }
-        document.getElementById('mobileNav').querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileNav').classList.remove('open');
-                document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
-            });
-        });
-    </script>
+            <div class="privacy-section">
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell your personal information. We may share information in limited circumstances:</p>
+                <ul>
+                    <li>With regulatory authorities as required by law</li>
+                    <li>With service providers who assist in our operations</li>
+                    <li>In case of business transfers or mergers</li>
+                    <li>To protect our rights or prevent fraud</li>
+                    <li>With your explicit consent</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>4. Data Security</h2>
+                <p>We implement comprehensive security measures to protect your information:</p>
+                <ul>
+                    <li>256-bit SSL encryption for all data transmission</li>
+                    <li>Multi-factor authentication for account access</li>
+                    <li>Regular security audits and penetration testing</li>
+                    <li>Secure data centers with physical access controls</li>
+                    <li>Employee background checks and confidentiality agreements</li>
+                    <li>Incident response procedures for security breaches</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>5. Data Retention</h2>
+                <p>We retain your information for as long as necessary to provide services and comply with legal obligations:</p>
+                <ul>
+                    <li>Account information: Duration of relationship plus 7 years</li>
+                    <li>Transaction records: 7 years from transaction date</li>
+                    <li>Communication records: 3 years from last contact</li>
+                    <li>Marketing preferences: Until you opt out</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>6. Your Rights</h2>
+                <p>You have certain rights regarding your personal information:</p>
+                <ul>
+                    <li>Access: Request copies of your personal data</li>
+                    <li>Correction: Update inaccurate or incomplete information</li>
+                    <li>Deletion: Request deletion of your data (subject to legal requirements)</li>
+                    <li>Portability: Receive your data in a structured format</li>
+                    <li>Objection: Object to certain processing activities</li>
+                    <li>Restriction: Request limitation of processing</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>7. Cookies and Tracking</h2>
+                <p>We use cookies and similar technologies to enhance your experience:</p>
+                <ul>
+                    <li>Essential cookies for platform functionality</li>
+                    <li>Analytics cookies to understand usage patterns</li>
+                    <li>Preference cookies to remember your settings</li>
+                    <li>Security cookies for fraud prevention</li>
+                </ul>
+                <p>You can manage cookie preferences through your browser settings.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>8. International Transfers</h2>
+                <p>Your information may be transferred to and processed in countries where we operate. We ensure appropriate safeguards are in place for international transfers.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>9. Children's Privacy</h2>
+                <p>Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal information from children.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>10. Changes to This Policy</h2>
+                <p>We may update this privacy policy periodically. We will notify you of significant changes through email or platform notifications.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>11. Contact Us</h2>
+                <p>For privacy-related questions or to exercise your rights, contact us:</p>
+                <ul>
+                    <li>Email: privacy@elitewealthcapita.uk</li>
+                    <li>Phone: +44 20 7946 0958</li>
+                    <li>Address: 71-75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+        <script src="{% static 'js/main.js' %}"></script>
+    
 </body>
 </html>

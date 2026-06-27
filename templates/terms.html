@@ -4,338 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms &amp; Conditions - Elite Wealth Capital</title>
-    <meta name="description" content="Read the Terms and Conditions governing your use of Elite Wealth Capital's investment services.">
-    <link rel="icon" type="image/webp" href="{% static 'images/logo.webp' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/logo.webp' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Terms & Conditions - Elite Wealth Capital</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/mobile.css' %}">
-    <style>
-        body { background: linear-gradient(135deg, #0A1F44 0%, #1e293b 100%); min-height: 100vh; color: #f1f5f9; font-family: 'Inter', sans-serif; }
-        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(10,22,40,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,215,0,0.25); }
-        .navbar-container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 70px; }
-        .navbar-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-        .navbar-logo img { height: 40px; width: 40px; object-fit: contain; }
-        .navbar-logo-text { display: flex; flex-direction: column; line-height: 1; }
-        .navbar-logo-text span:first-child { font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-        .navbar-logo-text span:last-child { font-size: 0.55rem; font-weight: 700; color: #FFD700; letter-spacing: 2px; }
-        .navbar-links { display: flex; gap: 0.25rem; align-items: center; }
-        .nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.75rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
-        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
-        .navbar-actions { display: flex; gap: 0.75rem; align-items: center; }
-        .btn-nav-login { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s; }
-        .btn-nav-login:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .btn-nav-signup { background: linear-gradient(135deg,#FFD700,#DAA520); color: #0A1F44; text-decoration: none; font-size: 0.9rem; font-weight: 700; padding: 0.5rem 1.25rem; border-radius: 6px; transition: opacity 0.2s; }
-        .btn-nav-signup:hover { opacity: 0.9; }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-        .mobile-nav { display: none; background: rgba(10,22,40,0.98); padding: 1rem 1.5rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
-        .mobile-nav a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .mobile-nav a:hover { color: #FFD700; }
-        .mobile-nav .mobile-btns { display: flex; gap: 0.75rem; margin-top: 1rem; }
-        .mobile-nav .mobile-btns a { border: none; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-weight: 700; font-size: 0.95rem; flex: 1; }
-        .mobile-nav .mobile-btns .mb-login { background: rgba(255,255,255,0.1); color: #fff; }
-        .mobile-nav .mobile-btns .mb-signup { background: linear-gradient(135deg,#FFD700,#DAA520); color: #0A1F44; }
-        @media (max-width: 900px) { .navbar-links, .navbar-actions { display: none; } .mobile-menu-btn { display: flex; } .mobile-nav.open { display: block; } }
-
-        /* Page styles */
-        .page-hero { text-align: center; padding: 4rem 1.5rem 2.5rem; }
-        .page-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #fff; margin-bottom: 0.75rem; }
-        .page-hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
-        .page-hero .gold-line { width: 60px; height: 3px; background: linear-gradient(90deg,#FFD700,#DAA520); margin: 1rem auto 0; border-radius: 2px; }
-
-        .content-wrapper { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
-        .toc-card { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
-        .toc-card h3 { color: #FFD700; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px; }
-        .toc-card ol { padding-left: 1.25rem; margin: 0; }
-        .toc-card ol li { margin-bottom: 0.4rem; }
-        .toc-card ol li a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .toc-card ol li a:hover { color: #FFD700; }
-
-        .terms-section { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; transition: border-color 0.2s; }
-        .terms-section:hover { border-color: rgba(255,215,0,0.2); }
-        .terms-section h2 { font-size: 1.15rem; font-weight: 700; color: #FFD700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
-        .terms-section h2 .section-num { background: rgba(255,215,0,0.15); color: #FFD700; width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
-        .terms-section p, .terms-section li { color: rgba(255,255,255,0.75); line-height: 1.7; font-size: 0.95rem; }
-        .terms-section ul, .terms-section ol { padding-left: 1.5rem; margin: 0.75rem 0; }
-        .terms-section li { margin-bottom: 0.35rem; }
-        .risk-warning { background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.3); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1.25rem; }
-        .risk-warning h2 { color: #FF8C00; }
-        .risk-warning p, .risk-warning li { color: rgba(255,255,255,0.8); }
-        .contact-info { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; }
-        .contact-info h2 { color: #FFD700; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
-        .contact-info p, .contact-info a { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-        .contact-info a { color: #FFD700; text-decoration: none; }
-        .contact-info a:hover { text-decoration: underline; }
-
-        .site-footer { background: rgba(5,10,20,0.98); border-top: 1px solid rgba(255,215,0,0.2); padding: 3rem 1.5rem 1.5rem; }
-        .footer-inner { max-width: 1100px; margin: 0 auto; }
-        .footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
-        .footer-col h4 { color: #FFD700; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col ul li { margin-bottom: 0.5rem; }
-        .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: #FFD700; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.8rem; }
-    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="{% url 'home' %}" class="navbar-logo">
-                <img src="{% static 'images/logo.webp' %}" alt="Elite Wealth Capital">
-                <div class="navbar-logo-text"><span>ELITE</span><span>WEALTH CAPITAL</span></div>
-            </a>
-            <div class="navbar-links">
-                <a href="{% url 'home' %}" class="nav-link">Home</a>
-                <a href="{% url 'about' %}" class="nav-link">About</a>
-                <a href="{% url 'investment_plans' %}" class="nav-link">Plans</a>
-                <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
-                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-            </div>
-            <div class="navbar-actions">
-                <a href="{% url 'login' %}" class="btn-nav-login">Login</a>
-                <a href="{% url 'signup' %}" class="btn-nav-signup">Get Started →</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="mobile-nav" id="mobileNav">
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'investment_plans' %}">Plans</a>
-            <a href="{% url 'faq' %}">FAQ</a>
-            <a href="{% url 'contact' %}">Contact</a>
-            <div class="mobile-btns">
-                <a href="{% url 'login' %}" class="mb-login">Login</a>
-                <a href="{% url 'signup' %}" class="mb-signup">Sign Up</a>
-            </div>
+    <nav>
+        <div class="nav-container">
+            <img src="{% static 'images/logo.webp' %}" alt="Elite Wealth Capital" class="logo" width="40" height="40">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'investment_plans' %}">Plans</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="page-hero">
-        <h1><i class="fas fa-file-contract" style="color:#FFD700; margin-right:0.5rem;"></i>Terms &amp; Conditions</h1>
-        <p>Last updated: January 2026 &nbsp;|&nbsp; Governing your use of Elite Wealth Capital's services</p>
-        <div class="gold-line"></div>
-    </section>
+    <main>
+        <section class="hero-section">
+            <h1>Terms & Conditions</h1>
+            <p>Last updated: [Date]</p>
+        </section>
 
-    <!-- Content -->
-    <div class="content-wrapper">
-        <!-- Table of Contents -->
-        <div class="toc-card">
-            <h3><i class="fas fa-list me-2"></i>Table of Contents</h3>
-            <ol>
-                <li><a href="#acceptance">Acceptance of Terms</a></li>
-                <li><a href="#services">Investment Services</a></li>
-                <li><a href="#registration">Account Registration</a></li>
-                <li><a href="#transactions">Deposits and Withdrawals</a></li>
-                <li><a href="#fees">Fees and Charges</a></li>
-                <li><a href="#risk">Risk Disclosure</a></li>
-                <li><a href="#prohibited">Prohibited Activities</a></li>
-                <li><a href="#liability">Limitation of Liability</a></li>
-                <li><a href="#termination">Termination</a></li>
-                <li><a href="#governing">Governing Law</a></li>
-                <li><a href="#changes">Changes to Terms</a></li>
-                <li><a href="#contact">Contact Information</a></li>
-            </ol>
-        </div>
-
-        <div class="terms-section" id="acceptance">
-            <h2><span class="section-num">1</span>Acceptance of Terms</h2>
-            <p>By accessing and using Elite Wealth Capital's platform, products, or services, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree to these terms, please do not use our services.</p>
-            <p>These terms constitute a legally binding agreement between you ("User") and Elite Wealth Capital Inc. ("Company", "we", "our", or "us"). We reserve the right to update these terms at any time, and continued use of our services after any changes constitutes acceptance of the revised terms.</p>
-        </div>
-
-        <div class="terms-section" id="services">
-            <h2><span class="section-num">2</span>Investment Services</h2>
-            <p>Elite Wealth Capital provides investment management services across cryptocurrency, real estate, and agricultural commodity markets. Our services include:</p>
-            <ul>
-                <li>Managed investment plans with defined return structures</li>
-                <li>Cryptocurrency deposit and withdrawal facilities</li>
-                <li>Portfolio performance tracking and reporting</li>
-                <li>Referral program and affiliate commissions</li>
-                <li>Virtual debit card services for qualifying members</li>
-                <li>Loan and credit facilities subject to eligibility</li>
-            </ul>
-            <p>All investments carry inherent risk. Minimum investment amounts, lock-in periods, and terms vary by plan. Returns are projected based on market conditions and are not guaranteed.</p>
-        </div>
-
-        <div class="terms-section" id="registration">
-            <h2><span class="section-num">3</span>Account Registration</h2>
-            <p>To access our investment services, you must create a verified account. By registering, you confirm that:</p>
-            <ul>
-                <li>You are at least 18 years of age</li>
-                <li>You have provided accurate, current, and complete information</li>
-                <li>Only one account per individual is permitted</li>
-                <li>You are not a resident of a jurisdiction where our services are prohibited</li>
-                <li>You are responsible for maintaining the confidentiality of your login credentials</li>
-            </ul>
-            <p>Account verification (KYC — Know Your Customer) is required before you can make withdrawals. This process involves providing government-issued identification and proof of address.</p>
-        </div>
-
-        <div class="terms-section" id="transactions">
-            <h2><span class="section-num">4</span>Deposits and Withdrawals</h2>
-            <p>All deposits and withdrawals are processed in accordance with our financial procedures and applicable regulations:</p>
-            <ul>
-                <li>Minimum deposit: ${{ min_deposit|default:"30" }} (varies by plan)</li>
-                <li>Minimum withdrawal: $10.00</li>
-                <li>KYC verification is mandatory before any withdrawal can be processed</li>
-                <li>Withdrawal requests are processed within 1–5 business days</li>
-                <li>Processing fees may apply depending on payment method</li>
-                <li>Anti-money laundering (AML) checks may delay or suspend transactions</li>
-                <li>We reserve the right to request additional documentation for large transactions</li>
-            </ul>
-        </div>
-
-        <div class="terms-section" id="fees">
-            <h2><span class="section-num">5</span>Fees and Charges</h2>
-            <p>Our fee structure is transparent and disclosed prior to investment. Applicable charges may include:</p>
-            <ul>
-                <li>Management fees embedded within plan returns</li>
-                <li>Withdrawal processing fees (where applicable)</li>
-                <li>Currency conversion fees for non-USD transactions</li>
-                <li>Early termination fees if an investment is withdrawn before maturity</li>
-            </ul>
-            <p>Full fee schedules are displayed during the investment and withdrawal processes. Fees are subject to change with 14 days' notice.</p>
-        </div>
-
-        <div class="terms-section risk-warning" id="risk">
-            <h2><span class="section-num" style="background:rgba(255,140,0,0.15); color:#FF8C00;">6</span>⚠️ Important Risk Disclosure</h2>
-            <p><strong>Investment in financial markets involves a significant degree of risk and is not suitable for all investors.</strong></p>
-            <p>You should carefully consider your investment objectives, level of experience, and risk appetite before investing. The possibility exists that you could sustain a loss of some or all of your initial investment. Therefore, you should not invest money that you cannot afford to lose.</p>
-            <ul>
-                <li>Cryptocurrency markets are highly volatile and values can fluctuate significantly</li>
-                <li>Past performance is not indicative of future results</li>
-                <li>Projected returns are estimates and are not guaranteed</li>
-                <li>Market volatility, economic conditions, and regulatory changes may affect investment performance</li>
-                <li>Investments in digital assets carry unique technology-related risks including exchange hacks and protocol failures</li>
-            </ul>
-            <p><strong>Regulatory Compliance:</strong> Elite Wealth Capital operates in compliance with applicable financial regulations. Clients may be protected by applicable investor compensation schemes in eligible jurisdictions.</p>
-        </div>
-
-        <div class="terms-section" id="prohibited">
-            <h2><span class="section-num">7</span>Prohibited Activities</h2>
-            <p>The following activities are strictly prohibited and may result in immediate account suspension or termination:</p>
-            <ul>
-                <li>Money laundering, terrorist financing, or any other illegal financial activity</li>
-                <li>Fraudulent, deceptive, or misleading practices</li>
-                <li>Creating multiple accounts or sharing account access</li>
-                <li>Attempting to manipulate platform systems, exploit bugs, or reverse-engineer our software</li>
-                <li>Unauthorized access to other users' accounts</li>
-                <li>Violating any applicable local, national, or international laws or regulations</li>
-                <li>Using bots or automated systems to interact with our platform</li>
-            </ul>
-        </div>
-
-        <div class="terms-section" id="liability">
-            <h2><span class="section-num">8</span>Limitation of Liability</h2>
-            <p>To the maximum extent permitted by applicable law, Elite Wealth Capital and its directors, officers, employees, and agents shall not be liable for:</p>
-            <ul>
-                <li>Market losses or investment underperformance</li>
-                <li>Indirect, incidental, special, or consequential damages</li>
-                <li>Losses arising from technical failures, system downtime, or security breaches beyond our control</li>
-                <li>Losses arising from a user's failure to comply with these terms</li>
-                <li>Any force majeure event including acts of God, government actions, or market closures</li>
-            </ul>
-        </div>
-
-        <div class="terms-section" id="termination">
-            <h2><span class="section-num">9</span>Termination</h2>
-            <p>Either party may terminate the service agreement with appropriate notice. Upon termination:</p>
-            <ul>
-                <li>You may request withdrawal of any available balance (subject to KYC and outstanding obligations)</li>
-                <li>Active investments will continue until their maturity date unless otherwise agreed</li>
-                <li>We reserve the right to suspend or terminate accounts that violate these terms without notice</li>
-                <li>Terminated accounts may be subject to a review period before funds are released</li>
-            </ul>
-        </div>
-
-        <div class="terms-section" id="governing">
-            <h2><span class="section-num">10</span>Governing Law</h2>
-            <p>These Terms and Conditions are governed by and construed in accordance with the laws of England and Wales. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the courts of England and Wales, unless otherwise required by your local mandatory consumer protection laws.</p>
-            <p>Where applicable, disputes may be resolved through binding arbitration in accordance with the rules of the Financial Ombudsman Service (FOS) or other relevant dispute resolution body.</p>
-        </div>
-
-        <div class="terms-section" id="changes">
-            <h2><span class="section-num">11</span>Changes to Terms</h2>
-            <p>We may update these Terms and Conditions from time to time to reflect changes in our services, applicable law, or business practices. We will notify you of material changes via:</p>
-            <ul>
-                <li>Email notification to your registered email address</li>
-                <li>Platform notification in your account dashboard</li>
-                <li>Update of the "Last updated" date at the top of this page</li>
-            </ul>
-            <p>Your continued use of our services after any changes constitutes acceptance of the updated terms.</p>
-        </div>
-
-        <div class="contact-info" id="contact">
-            <h2><i class="fas fa-envelope me-2"></i>12. Contact Information</h2>
-            <p>For questions, concerns, or to exercise your legal rights regarding these terms, please contact us:</p>
-            <p><strong>Email:</strong> <a href="mailto:legal@elitewealthcapita.uk">legal@elitewealthcapita.uk</a></p>
-            <p><strong>Support:</strong> <a href="mailto:support@elitewealthcapita.uk">support@elitewealthcapita.uk</a></p>
-            <p><strong>Address:</strong> 71–75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom</p>
-            <p><strong>Phone:</strong> +44 20 7946 0958</p>
-            <p style="margin-top:1rem;"><a href="{% url 'privacy_policy' %}" style="color:#FFD700;"><i class="fas fa-shield-alt me-1"></i>View our Privacy Policy →</a></p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-cols">
-                <div class="footer-col">
-                    <h4>Elite Wealth Capital</h4>
-                    <ul>
-                        <li><a href="{% url 'about' %}">About Us</a></li>
-                        <li><a href="{% url 'team' %}">Leadership Team</a></li>
-                        <li><a href="{% url 'partners' %}">Global Partners</a></li>
-                        <li><a href="{% url 'news' %}">Latest News</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="{% url 'investment_plans' %}">Investment Plans</a></li>
-                        <li><a href="{% url 'reviews' %}">Client Reviews</a></li>
-                        <li><a href="{% url 'faq' %}">FAQ</a></li>
-                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="{% url 'terms' %}">Terms of Service</a></li>
-                        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-                    </ul>
-                </div>
+        <section class="terms-content">
+            <div class="terms-section">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using Elite Wealth Capital's services, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Elite Wealth Capital Inc. All rights reserved.</p>
-                <p style="margin-top:0.5rem;">Investment involves risk. Past performance does not guarantee future results.</p>
-            </div>
-        </div>
-    </footer>
 
-    <script src="{% static 'js/main.js' %}"></script>
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.getElementById('mobileMenuBtn');
-            const isOpen = nav.classList.toggle('open');
-            btn.setAttribute('aria-expanded', isOpen);
-        }
-        document.getElementById('mobileNav').querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileNav').classList.remove('open');
-                document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
-            });
-        });
-    </script>
+            <div class="terms-section">
+                <h2>2. Investment Services</h2>
+                <p>Elite Wealth Capital provides investment management services. All investments carry risk, and past performance does not guarantee future results. You may lose some or all of your invested capital.</p>
+                <ul>
+                    <li>Minimum investment amounts apply to each plan</li>
+                    <li>Investment terms vary by selected plan</li>
+                    <li>Returns are not guaranteed and depend on market conditions</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>3. Account Registration</h2>
+                <p>To use our services, you must create an account and provide accurate information. You are responsible for maintaining the confidentiality of your account credentials.</p>
+                <ul>
+                    <li>You must be at least 18 years old to register</li>
+                    <li>One account per person is permitted</li>
+                    <li>Account verification may be required</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>4. Deposits and Withdrawals</h2>
+                <p>Deposits and withdrawals are subject to our processing procedures and applicable fees. Processing times may vary based on payment method and verification requirements.</p>
+                <ul>
+                    <li>Minimum deposit and withdrawal amounts apply</li>
+                    <li>Processing fees may apply to transactions</li>
+                    <li>Anti-money laundering checks may delay transactions</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>5. Fees and Charges</h2>
+                <p>Our fee structure is transparent and disclosed before investment. Management fees, performance fees, and transaction fees may apply depending on your investment plan.</p>
+            </div>
+
+            <div class="terms-section risk-disclosure-section" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h2 style="color: #FFD700;">⚠️ 6. Important Risk Disclosure</h2>
+                <p><strong>Investment in financial markets involves a significant degree of risk and is not suitable for all investors.</strong></p>
+                <p>You should carefully consider your investment objectives, level of experience, and risk appetite before investing. The possibility exists that you could sustain a loss of some or all of your initial investment.</p>
+                <ul>
+                    <li>Volatility in cryptocurrency and commodity markets can result in significant changes in the value of your investment</li>
+                    <li>Past performance is not indicative of future results</li>
+                    <li>You should only invest funds you can afford to lose</li>
+                    <li>Market volatility, economic conditions, and regulatory changes may affect investment performance</li>
+                    <li>Cryptocurrency investments are highly volatile and speculative</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Consumer Protection:</strong> Clients may be protected by applicable investor compensation schemes in eligible cases. Please review your local regulations.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>7. Prohibited Activities</h2>
+                <p>The following activities are strictly prohibited:</p>
+                <ul>
+                    <li>Money laundering or terrorist financing</li>
+                    <li>Fraudulent or deceptive practices</li>
+                    <li>Violation of applicable laws or regulations</li>
+                    <li>Unauthorized access to other accounts</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>8. Limitation of Liability</h2>
+                <p>Elite Wealth Capital's liability is limited to the extent permitted by law. We are not liable for market losses, technical failures, or circumstances beyond our control.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>9. Termination</h2>
+                <p>Either party may terminate the agreement with appropriate notice. Upon termination, you may withdraw your funds subject to applicable terms and processing procedures.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>10. Governing Law</h2>
+                <p>These terms are governed by the laws of the jurisdiction where your account is held. Disputes will be resolved through binding arbitration where permitted by law.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>11. Changes to Terms</h2>
+                <p>We may update these terms from time to time. Continued use of our services after changes constitutes acceptance of the updated terms.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>12. Contact Information</h2>
+                <p>For questions about these terms, please contact our support team through the contact page or email support@elitewealthcapita.uk</p>
+            </div>
+        </section>
+    </main>
+
+        <script src="{% static 'js/main.js' %}"></script>
+    
 </body>
 </html>

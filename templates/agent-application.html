@@ -11,15 +11,12 @@
     <link rel="stylesheet" href="{% static 'css/glassmorphism-theme.css?v=20260308' %}">
     <link rel="stylesheet" href="{% static 'css/mobile.css?v=20260320' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
+    </head>
 <body class="dashboard-site">
     <!-- Crypto Ticker -->
     <div class="crypto-ticker-horizontal">
         <div class="ticker-track"></div>
     </div>
-
-    <!-- Logout Form -->
-    <form id="logout-form-dashboard" action="{% url 'logout' %}" method="POST" style="display:none;">{% csrf_token %}</form>
 
     <nav class="dashboard-nav">
         <div class="container-fluid">
@@ -28,221 +25,95 @@
                 <span class="logo-text">Elite Wealth Capital</span>
             </a>
             <div class="nav-user">
-                <span class="user-name">{{ user.full_name }}</span>
-                <a href="{% url 'logout' %}" class="btn-secondary" onclick="event.preventDefault(); document.getElementById('logout-form-dashboard').submit();" style="text-decoration:none;">Logout</a>
+                <span class="user-name" id="userName">Loading...</span>
+                <button class="btn-secondary" onclick="logout()" aria-label="Log out of your account">Logout</button>
             </div>
         </div>
     </nav>
-
     <div class="dashboard-layout">
         <aside class="sidebar">
             <nav class="sidebar-nav">
                 <a href="{% url 'dashboard' %}" class="sidebar-link"><span class="icon">📊</span><span>Dashboard</span></a>
                 <a href="{% url 'invest' %}" class="sidebar-link"><span class="icon">💰</span><span>Invest</span></a>
-                <a href="{% url 'add_funds' %}" class="sidebar-link"><span class="icon">💳</span><span>Add Funds</span></a>
-                <a href="{% url 'withdraw' %}" class="sidebar-link"><span class="icon">💸</span><span>Withdraw</span></a>
-                <a href="{% url 'loans' %}" class="sidebar-link"><span class="icon">🏦</span><span>Get Loan</span></a>
-                <a href="{% url 'cards' %}" class="sidebar-link"><span class="icon">💎</span><span>Virtual Cards</span></a>
-                <a href="{% url 'transactions' %}" class="sidebar-link"><span class="icon">📝</span><span>Transactions</span></a>
-                <a href="{% url 'referrals' %}" class="sidebar-link"><span class="icon">👥</span><span>Referrals</span></a>
-                <a href="{% url 'activity_log' %}" class="sidebar-link"><span class="icon">🕐</span><span>Activity Log</span></a>
-                <a href="{% url 'notifications:list' %}" class="sidebar-link"><span class="icon">🔔</span><span>Notifications</span></a>
-                <a href="{% url 'dispute' %}" class="sidebar-link"><span class="icon">⚠️</span><span>Disputes</span></a>
-                <a href="{% url 'accounts:profile' %}" class="sidebar-link"><span class="icon">⚙️</span><span>Settings</span></a>
-                <a href="{% url 'upgrade' %}" class="sidebar-link"><span class="icon">⭐</span><span>Upgrade</span></a>
-                <a href="{% url 'agent_application' %}" class="sidebar-link active"><span class="icon">🤝</span><span>Become Agent</span></a>
+                <a href="agent-application" class="sidebar-link active"><span class="icon">🤝</span><span>Become Agent</span></a>
             </nav>
         </aside>
-
         <main class="dashboard-main">
-            <!-- Messages -->
-            {% if messages %}
-            <div style="padding: 0 1.5rem 1rem;">
-                {% for message in messages %}
-                <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %}" style="background:rgba(20,30,50,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#e2e8f0; margin-bottom:0.5rem; padding:0.75rem 1rem;">
-                    {{ message }}
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
             <div class="dashboard-header">
                 <h1>🤝 Become an Agent</h1>
                 <p>Earn commissions by referring investors to our platform</p>
             </div>
-
-            <!-- Benefits Grid -->
             <div class="card-glass" style="padding: 2rem; margin-bottom: 1.5rem;">
-                <h3 style="margin-bottom: 1rem; color: #FFD700;">Agent Benefits</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
-                    <div style="text-align: center; padding: 1.5rem; background: rgba(255, 215, 0, 0.1); border-radius: 1rem; border: 1px solid rgba(255,215,0,0.2);">
+                <h3 style="margin-bottom: 1rem;">Agent Benefits</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(255, 215, 0, 0.1); border-radius: 1rem;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
-                        <h4 style="color: #FFD700;">10% Commission</h4>
+                        <h4>10% Commission</h4>
                         <p style="color: #94a3b8; font-size: 0.875rem;">Earn on every referral deposit</p>
                     </div>
-                    <div style="text-align: center; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 1rem; border: 1px solid rgba(59,130,246,0.2);">
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 1rem;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
-                        <h4 style="color: #60a5fa;">Dashboard Access</h4>
+                        <h4>Dashboard Access</h4>
                         <p style="color: #94a3b8; font-size: 0.875rem;">Track your referrals in real-time</p>
                     </div>
-                    <div style="text-align: center; padding: 1.5rem; background: rgba(0, 168, 107, 0.1); border-radius: 1rem; border: 1px solid rgba(0,168,107,0.2);">
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(0, 168, 107, 0.1); border-radius: 1rem;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
-                        <h4 style="color: #34d399;">Instant Payouts</h4>
+                        <h4>Instant Payouts</h4>
                         <p style="color: #94a3b8; font-size: 0.875rem;">Withdraw commissions anytime</p>
                     </div>
-                    <div style="text-align: center; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 1rem; border: 1px solid rgba(139,92,246,0.2);">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
-                        <h4 style="color: #a78bfa;">Dedicated Support</h4>
-                        <p style="color: #94a3b8; font-size: 0.875rem;">Priority agent support team</p>
-                    </div>
                 </div>
             </div>
-
-            {% if existing_application %}
-            <!-- Already Applied -->
             <div class="card-glass" style="padding: 2rem;">
-                <div style="text-align: center; padding: 2rem;">
-                    {% if existing_application.status == 'pending' %}
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
-                        <h3 style="color: #FFD700; margin-bottom: 0.5rem;">Application Under Review</h3>
-                        <p style="color: #94a3b8;">Your agent application has been submitted and is currently being reviewed. We will notify you within 3–5 business days.</p>
-                    {% elif existing_application.status == 'approved' %}
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                        <h3 style="color: #34d399; margin-bottom: 0.5rem;">Application Approved!</h3>
-                        <p style="color: #94a3b8;">Congratulations! Your agent application has been approved. Start sharing your referral code to earn commissions.</p>
-                        <a href="{% url 'referrals' %}" class="btn btn-primary" style="margin-top: 1rem;">View Referral Dashboard →</a>
-                    {% elif existing_application.status == 'rejected' %}
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
-                        <h3 style="color: #f87171; margin-bottom: 0.5rem;">Application Not Approved</h3>
-                        <p style="color: #94a3b8;">Unfortunately your application was not approved at this time. Please contact support for more information.</p>
-                    {% else %}
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
-                        <h3 style="color: #FFD700; margin-bottom: 0.5rem;">Application Submitted</h3>
-                        <p style="color: #94a3b8;">Status: <strong style="text-transform: capitalize;">{{ existing_application.status }}</strong></p>
-                    {% endif %}
-                    <p style="color: #64748b; font-size: 0.85rem; margin-top: 1rem;">Applied on: {{ existing_application.created_at|date:"N j, Y" }}</p>
-                </div>
-            </div>
-
-            {% else %}
-            <!-- Application Form -->
-            <div class="card-glass" style="padding: 2rem;">
-                <h3 style="margin-bottom: 1.5rem; color: #FFD700;">Apply to Become an Agent</h3>
-                <form method="POST" action="{% url 'agent_application' %}" enctype="multipart/form-data" id="agentApplicationForm">
+                <h3 style="margin-bottom: 1.5rem;">Apply to Become an Agent</h3>
+                <form id="agentApplicationForm">
                     {% csrf_token %}
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Full Name <span style="color:#f87171;">*</span></label>
-                            <input type="text" name="full_name" value="{{ user.full_name }}" required
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;"
-                                placeholder="Your full legal name">
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Phone Number <span style="color:#f87171;">*</span></label>
-                            <input type="tel" name="phone" value="{{ user.phone }}" required
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;"
-                                placeholder="+1 234 567 8900">
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Country <span style="color:#f87171;">*</span></label>
-                            <input type="text" name="country" value="{{ user.country }}" required
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;"
-                                placeholder="Your country">
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">City <span style="color:#f87171;">*</span></label>
-                            <input type="text" name="city" required
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;"
-                                placeholder="Your city">
-                        </div>
+                    <div class="form-group">
+                        <label>Why do you want to become an agent?</label>
+                        <textarea id="motivation" rows="4" style="width: 100%; padding: 1rem; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 0.5rem; color: #fff;" placeholder="Tell us about yourself and your plans..."></textarea>
                     </div>
-
-                    <div class="form-group" style="margin-bottom:1.5rem;">
-                        <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Your Background &amp; Experience <span style="color:#f87171;">*</span></label>
-                        <textarea name="experience" rows="4" required
-                            style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem; resize:vertical;"
-                            placeholder="Tell us about your background in marketing, finance, or sales. Include relevant experience that makes you a good fit for this role..."></textarea>
+                    <div class="form-group">
+                        <label>How many people can you refer monthly?</label>
+                        <select id="referralEstimate" style="width: 100%; padding: 1rem; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 0.5rem; color: #fff;">
+                            <option value="">Select an option</option>
+                            <option value="1-10">1-10 people</option>
+                            <option value="11-50">11-50 people</option>
+                            <option value="51-100">51-100 people</option>
+                            <option value="100+">100+ people</option>
+                        </select>
                     </div>
-
-                    <div class="form-group" style="margin-bottom:1.5rem;">
-                        <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Marketing Plan <span style="color:#f87171;">*</span></label>
-                        <textarea name="marketing_plan" rows="4" required
-                            style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem; resize:vertical;"
-                            placeholder="Describe how you plan to promote Elite Wealth Capital and attract new investors. Include your strategy, channels, and target audience..."></textarea>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Expected Monthly Referrals <span style="color:#f87171;">*</span></label>
-                            <select name="expected_referrals"
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;">
-                                <option value="5">1–5 people</option>
-                                <option value="15">6–20 people</option>
-                                <option value="35">21–50 people</option>
-                                <option value="75">51–100 people</option>
-                                <option value="150">100+ people</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Website <span style="color:#94a3b8; font-weight:400;">(optional)</span></label>
-                            <input type="url" name="website"
-                                style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem;"
-                                placeholder="https://yourwebsite.com">
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom:1.5rem;">
-                        <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">Social Media Links <span style="color:#94a3b8; font-weight:400;">(optional)</span></label>
-                        <textarea name="social_media_links" rows="2"
-                            style="width:100%; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; color:#fff; font-size:0.9rem; resize:vertical;"
-                            placeholder="e.g. Twitter: @yourhandle, Instagram: @yourprofile, LinkedIn: linkedin.com/in/yourprofile"></textarea>
-                    </div>
-
-                    <div class="form-group" style="margin-bottom:2rem;">
-                        <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:#e2e8f0;">ID Document <span style="color:#94a3b8; font-weight:400;">(optional — passport, ID card, or driver's licence)</span></label>
-                        <label style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:rgba(15,23,42,0.8); border:1px solid #334155; border-radius:0.5rem; cursor:pointer;">
-                            <span style="font-size:1.5rem;">📎</span>
-                            <span id="docLabel" style="color:#64748b; font-size:0.9rem;">Click to upload ID document (PDF, JPG, PNG — max 10MB)</span>
-                            <input type="file" name="id_document" id="idDocument" style="display:none;"
-                                accept=".pdf,.jpg,.jpeg,.png"
-                                onchange="document.getElementById('docLabel').textContent=this.files[0]?this.files[0].name:'Click to upload ID document'; document.getElementById('docLabel').style.color=this.files[0]?'#FFD700':'#64748b';">
-                        </label>
-                    </div>
-
-                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-                        <button type="submit" class="btn btn-primary" style="padding:0.75rem 2rem; font-weight:600; font-size:1rem;">
-                            🤝 Submit Application
-                        </button>
-                        <a href="{% url 'dashboard' %}" class="btn btn-secondary" style="padding:0.75rem 1.5rem;">Cancel</a>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
                 </form>
             </div>
-            {% endif %}
         </main>
     </div>
-
+    
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
         <a href="{% url 'dashboard' %}" class="nav-item">
-            <i class="fas fa-home"></i><span>Home</span>
+            <i class="fas fa-home"></i>
+            <span>Home</span>
         </a>
         <a href="{% url 'invest' %}" class="nav-item">
-            <i class="fas fa-chart-line"></i><span>Invest</span>
+            <i class="fas fa-chart-line"></i>
+            <span>Invest</span>
         </a>
         <a href="{% url 'add_funds' %}" class="nav-item">
-            <i class="fas fa-plus-circle"></i><span>Deposit</span>
+            <i class="fas fa-plus-circle"></i>
+            <span>Deposit</span>
         </a>
         <a href="{% url 'withdraw' %}" class="nav-item">
-            <i class="fas fa-money-bill-wave"></i><span>Withdraw</span>
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Withdraw</span>
         </a>
-        <a href="{% url 'accounts:profile' %}" class="nav-item active">
-            <i class="fas fa-user-cog"></i><span>Settings</span>
+        <a href="{% url 'accounts:profile' %}" class="nav-item">
+            <i class="fas fa-user-cog"></i>
+            <span>Settings</span>
         </a>
     </nav>
-
-    <script src="{% static 'js/main.js?v=20260308' %}"></script>
-    <script src="{% static 'js/dashboard.js?v=20260308' %}"></script>
+    
+        <script src="{% static 'js/main.js?v=20260308' %}"></script>
+    
+    
 </body>
 </html>
 

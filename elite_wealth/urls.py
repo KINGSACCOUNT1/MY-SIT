@@ -63,7 +63,7 @@ urlpatterns = [
     path('investments/', include('investments.urls')),
     path('kyc/', include('kyc.urls')),
     path('notifications/', include('notifications.urls')),
-    path('messaging/', include('messaging.urls')),
+    # path('messaging/', include('messaging.urls')),  # Commented out - messaging app not configured
     
     # REST API - commented out until rest_framework is installed
     # path('api/v1/', include('api.urls')),

@@ -1,226 +1,116 @@
-{% load static humanize %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Track your active and completed investments at Elite Wealth Capital.">
-    <title>My Investments - Elite Wealth Capital</title>
-    <link rel="icon" type="image/webp" href="{% static 'images/logo.webp' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/logo.webp' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css?v=20260308' %}">
-    <link rel="stylesheet" href="{% static 'css/dashboard.css?v=20260308' %}">
-    <link rel="stylesheet" href="{% static 'css/mobile.css?v=20260320' %}">
-    <link rel="preload" as="style" href="{% static 'css/glassmorphism-theme.css?v=20260308' %}">
-    <link rel="stylesheet" href="{% static 'css/glassmorphism-theme.css?v=20260308' %}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{% static 'css/glassmorphism-theme.css?v=20260308' %}"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .inv-stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.25rem 1.5rem; text-align: center; transition: border-color 0.2s; }
-        .inv-stat-card:hover { border-color: rgba(255,215,0,0.3); }
-        .inv-stat-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .inv-stat-value { font-size: 1.6rem; font-weight: 700; }
-        .inv-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-        .inv-table { width: 100%; border-collapse: collapse; }
-        .inv-table th { padding: 0.75rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; }
-        .inv-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: #e2e8f0; vertical-align: middle; }
-        .inv-table tr:hover td { background: rgba(255,215,0,0.03); }
-        .inv-table tr:last-child td { border-bottom: none; }
-        .badge-active { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.75rem; font-weight: 600; }
-        .badge-completed { background: rgba(0,168,107,0.2); color: #34d399; border: 1px solid rgba(0,168,107,0.3); border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.75rem; font-weight: 600; }
-        .badge-cancelled { background: rgba(239,68,68,0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3); border-radius: 20px; padding: 0.2rem 0.7rem; font-size: 0.75rem; font-weight: 600; }
-        .progress-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 10px; height: 6px; min-width: 80px; overflow: hidden; }
-        .progress-bar-fill { background: linear-gradient(90deg,#FFD700,#DAA520); height: 100%; border-radius: 10px; transition: width 0.5s; }
-        @media (max-width: 768px) { .inv-table-wrap { overflow-x: auto; } .hide-mobile { display: none !important; } }
-    </style>
-</head>
-<body class="dashboard-site">
-    <div class="crypto-ticker-horizontal" style="top: 0;"><div class="ticker-track"></div></div>
+{% extends 'base.html' %}
+{% load static %}
 
-    <!-- Logout Form -->
-    <form id="logout-form-dashboard" action="{% url 'logout' %}" method="POST" style="display:none;">{% csrf_token %}</form>
+{% block title %}My Investments - Elite Wealth Capital{% endblock %}
 
-    <!-- Dashboard Nav -->
-    <nav class="dashboard-nav">
-        <div class="container-fluid">
-            <a href="{% url 'dashboard' %}" class="nav-brand" style="text-decoration:none; display:flex; align-items:center; gap:0.5rem;">
-                <img src="{% static 'images/logo.webp' %}" alt="Elite Wealth Capital" style="height:40px; width:auto; object-fit:contain;">
-                <div class="logo-placeholder" style="background:none; border:none; padding:0;">
-                    <span class="logo-text">ELITE</span><span class="logo-subtext">WEALTH CAPITA</span>
-                </div>
-            </a>
-            <div class="nav-user">
-                <div class="user-info" style="display:flex; align-items:center; gap:0.5rem;">
-                    {% if request.user.profile_image %}
-                    <img src="{{ request.user.profile_image.url }}" alt="Profile" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #FFD700;">
-                    {% else %}
-                    <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#FFD700,#DAA520); display:flex; align-items:center; justify-content:center; color:#0A1F44; font-weight:700; font-size:0.9rem;" aria-hidden="true">{{ request.user.full_name|first|upper }}</div>
-                    {% endif %}
-                    <span class="user-name">{{ request.user.full_name }}</span>
-                </div>
-                <a href="{% url 'add_funds' %}" class="btn-primary" style="padding:0.4rem 1rem; border-radius:0.5rem; text-decoration:none; background:linear-gradient(135deg,#FFD700,#DAA520); color:#0A1F44; font-weight:600; font-size:0.85rem;">Add Funds</a>
-                <a href="{% url 'logout' %}" class="btn-secondary" onclick="event.preventDefault(); document.getElementById('logout-form-dashboard').submit();" style="text-decoration:none;">Logout</a>
-            </div>
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="text-warning mb-0">
+                <i class="fas fa-chart-line me-2"></i>My Investments
+            </h2>
+            <p class="text-muted">Track your active and completed investments</p>
         </div>
-    </nav>
-
-    <div class="dashboard-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <nav class="sidebar-nav">
-                <div class="crypto-ticker-vertical" id="cryptoTicker">
-                    <div style="padding:10px; font-weight:bold; border-bottom:1px solid rgba(255,255,255,0.1); background:rgba(255,215,0,0.1); text-align:center;">Live Market</div>
-                    <div id="tickerContent"></div>
-                </div>
-                <a href="{% url 'dashboard' %}" class="sidebar-link"><span class="icon">📊</span><span>Dashboard</span></a>
-                <a href="{% url 'invest' %}" class="sidebar-link active"><span class="icon">💰</span><span>Invest</span></a>
-                <a href="{% url 'add_funds' %}" class="sidebar-link"><span class="icon">💳</span><span>Add Funds</span></a>
-                <a href="{% url 'withdraw' %}" class="sidebar-link"><span class="icon">💸</span><span>Withdraw</span></a>
-                <a href="{% url 'loans' %}" class="sidebar-link"><span class="icon">🏦</span><span>Get Loan</span></a>
-                <a href="{% url 'cards' %}" class="sidebar-link"><span class="icon">💎</span><span>Virtual Cards</span></a>
-                <a href="{% url 'transactions' %}" class="sidebar-link"><span class="icon">📝</span><span>Transactions</span></a>
-                <a href="{% url 'referrals' %}" class="sidebar-link"><span class="icon">👥</span><span>Referrals</span></a>
-                <a href="{% url 'referral_leaderboard' %}" class="sidebar-link"><span class="icon">🏆</span><span>Leaderboard</span></a>
-                <a href="{% url 'activity_log' %}" class="sidebar-link"><span class="icon">🕐</span><span>Activity Log</span></a>
-                <a href="{% url 'notifications:list' %}" class="sidebar-link"><span class="icon">🔔</span><span>Notifications</span></a>
-                <a href="{% url 'dispute' %}" class="sidebar-link"><span class="icon">⚠️</span><span>Disputes &amp; Support</span></a>
-                <a href="{% url 'accounts:profile' %}" class="sidebar-link"><span class="icon">⚙️</span><span>Account Settings</span></a>
-                <a href="{% url 'upgrade' %}" class="sidebar-link"><span class="icon">⭐</span><span>Upgrade</span></a>
-                <a href="{% url 'agent_application' %}" class="sidebar-link"><span class="icon">🤝</span><span>Become Agent</span></a>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="dashboard-main">
-            <div class="dashboard-header">
-                <h1>📈 My Investments</h1>
-                <p>Track your active and completed investment portfolio</p>
-            </div>
-
-            {% if messages %}
-            <div style="margin-bottom:1rem;">
-                {% for message in messages %}
-                <div style="background:rgba(20,30,50,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#e2e8f0; padding:0.75rem 1rem; margin-bottom:0.5rem;">{{ message }}</div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-            <!-- Summary Stats -->
-            <div class="inv-stats-grid">
-                <div class="inv-stat-card">
-                    <div class="inv-stat-label">Active Investments</div>
-                    <div class="inv-stat-value" style="color:#60a5fa;">{{ active_investments.count }}</div>
-                </div>
-                <div class="inv-stat-card">
-                    <div class="inv-stat-label">Total Invested</div>
-                    <div class="inv-stat-value" style="color:#FFD700;">
-                        ${% with total=active_investments|length %}
-                        {% if active_investments %}
-                            {{ active_investments.0.amount|floatformat:0 }}
-                        {% else %}0{% endif %}
-                        {% endwith %}
-                    </div>
-                </div>
-                <div class="inv-stat-card">
-                    <div class="inv-stat-label">Completed</div>
-                    <div class="inv-stat-value" style="color:#34d399;">{{ completed_investments.count }}</div>
-                </div>
-                <div class="inv-stat-card">
-                    <div class="inv-stat-label">Total Investments</div>
-                    <div class="inv-stat-value" style="color:#e2e8f0;">{{ investments.count }}</div>
-                </div>
-            </div>
-
-            <!-- Investments Table -->
-            <div class="card-glass" style="padding:0; overflow:hidden;">
-                <div style="padding:1.25rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
-                    <h3 style="margin:0; font-size:1rem; color:#FFD700;">Investment History</h3>
-                    <a href="{% url 'invest' %}" class="btn btn-primary" style="padding:0.5rem 1.25rem; border-radius:8px; text-decoration:none; background:linear-gradient(135deg,#FFD700,#DAA520); color:#0A1F44; font-weight:600; font-size:0.85rem;">
-                        + New Investment
-                    </a>
-                </div>
-
-                {% if investments %}
-                <div class="inv-table-wrap">
-                    <table class="inv-table">
-                        <thead>
-                            <tr>
-                                <th>Plan</th>
-                                <th>Amount</th>
-                                <th>Expected Profit</th>
-                                <th class="hide-mobile">Daily ROI</th>
-                                <th class="hide-mobile">Start Date</th>
-                                <th>End Date</th>
-                                <th>Progress</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for inv in investments %}
-                            <tr>
-                                <td>
-                                    <span style="background:rgba(255,215,0,0.15); color:#FFD700; border:1px solid rgba(255,215,0,0.3); border-radius:6px; padding:0.2rem 0.6rem; font-size:0.8rem; font-weight:600;">{{ inv.plan.name }}</span>
-                                </td>
-                                <td style="color:#FFD700; font-weight:600;">${{ inv.amount|floatformat:2|intcomma }}</td>
-                                <td style="color:#34d399; font-weight:600;">${{ inv.expected_profit|floatformat:2|intcomma }}</td>
-                                <td class="hide-mobile" style="color:#94a3b8;">{{ inv.plan.daily_roi }}%</td>
-                                <td class="hide-mobile" style="color:#94a3b8; font-size:0.85rem;">{{ inv.start_date|date:"M d, Y" }}</td>
-                                <td style="color:#94a3b8; font-size:0.85rem;">{{ inv.end_date|date:"M d, Y" }}</td>
-                                <td>
-                                    <div class="progress-bar-wrap">
-                                        <div class="progress-bar-fill" style="width:{{ inv.progress_percentage|floatformat:0 }}%;"></div>
-                                    </div>
-                                    <div style="font-size:0.7rem; color:#64748b; margin-top:0.2rem;">{{ inv.progress_percentage|floatformat:0 }}%</div>
-                                </td>
-                                <td>
-                                    {% if inv.status == 'active' %}
-                                        <span class="badge-active">Active</span>
-                                    {% elif inv.status == 'completed' %}
-                                        <span class="badge-completed">Completed</span>
-                                    {% elif inv.status == 'cancelled' %}
-                                        <span class="badge-cancelled">Cancelled</span>
-                                    {% else %}
-                                        <span style="color:#94a3b8; font-size:0.85rem;">{{ inv.status|title }}</span>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% else %}
-                <div style="text-align:center; padding:4rem 2rem;">
-                    <div style="font-size:4rem; margin-bottom:1rem; opacity:0.3;">📊</div>
-                    <h4 style="color:#64748b; margin-bottom:0.5rem;">No investments yet</h4>
-                    <p style="color:#475569; margin-bottom:1.5rem;">Start your investment journey today and grow your wealth.</p>
-                    <a href="{% url 'invest' %}" class="btn btn-primary" style="padding:0.75rem 2rem; border-radius:8px; text-decoration:none; background:linear-gradient(135deg,#FFD700,#DAA520); color:#0A1F44; font-weight:600;">
-                        💰 Make Your First Investment
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-
-            <!-- Back Link -->
-            <div style="margin-top:1.5rem;">
-                <a href="{% url 'dashboard' %}" style="color:#FFD700; text-decoration:none; font-size:0.9rem;">
-                    ← Back to Dashboard
-                </a>
-            </div>
-        </main>
     </div>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav" style="display:none;">
-        <div class="nav-items">
-            <a href="{% url 'dashboard' %}"><span class="icon">📊</span><span>Home</span></a>
-            <a href="{% url 'invest' %}" class="active"><span class="icon">💰</span><span>Invest</span></a>
-            <a href="{% url 'add_funds' %}"><span class="icon">💳</span><span>Deposit</span></a>
-            <a href="{% url 'withdraw' %}"><span class="icon">💸</span><span>Withdraw</span></a>
-            <a href="{% url 'accounts:profile' %}"><span class="icon">⚙️</span><span>Settings</span></a>
+    <!-- Investment Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark border-warning h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Total Invested</h6>
+                    <h3 class="text-warning">${{ total_invested|floatformat:2 }}</h3>
+                </div>
+            </div>
         </div>
-    </nav>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark border-success h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Expected Profit</h6>
+                    <h3 class="text-success">${{ total_expected_profit|floatformat:2 }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark border-info h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Active Investments</h6>
+                    <h3 class="text-info">{{ active_count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Completed</h6>
+                    <h3 class="text-white">{{ completed_count }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="{% static 'js/main.js?v=20260308' %}"></script>
-    <script src="{% static 'js/dashboard.js?v=20260308' %}"></script>
-</body>
-</html>
+    <!-- Investments Table -->
+    <div class="card bg-dark border-warning">
+        <div class="card-header bg-transparent border-warning d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-warning">Investment History</h5>
+            <a href="{% url 'invest' %}" class="btn btn-warning btn-sm">
+                <i class="fas fa-plus me-1"></i>New Investment
+            </a>
+        </div>
+        <div class="card-body">
+            {% if investments %}
+            <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Amount</th>
+                            <th>Expected Profit</th>
+                            <th>Daily ROI</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for inv in investments %}
+                        <tr>
+                            <td>
+                                <span class="badge bg-warning text-dark">{{ inv.plan.name }}</span>
+                            </td>
+                            <td class="text-info">${{ inv.amount|floatformat:2 }}</td>
+                            <td class="text-success">${{ inv.expected_profit|floatformat:2 }}</td>
+                            <td>{{ inv.plan.daily_roi }}%</td>
+                            <td>{{ inv.start_date|date:"M d, Y" }}</td>
+                            <td>{{ inv.end_date|date:"M d, Y" }}</td>
+                            <td>
+                                {% if inv.status == 'active' %}
+                                    <span class="badge bg-primary">Active</span>
+                                {% elif inv.status == 'completed' %}
+                                    <span class="badge bg-success">Completed</span>
+                                {% elif inv.status == 'cancelled' %}
+                                    <span class="badge bg-danger">Cancelled</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ inv.status|title }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-chart-pie fa-4x text-muted mb-3"></i>
+                <h5 class="text-muted">No investments yet</h5>
+                <p class="text-muted">Start your investment journey today</p>
+                <a href="{% url 'invest' %}" class="btn btn-warning">
+                    <i class="fas fa-plus me-2"></i>Make Your First Investment
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
