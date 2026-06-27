@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: elite-wealth-capita
+    name: elite-wealth-capital
     runtime: docker
     plan: standard
     dockerfilePath: ./Dockerfile
