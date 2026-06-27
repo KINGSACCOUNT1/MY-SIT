@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
-from django.db.models import Sum
 from django.utils import timezone
 from django.http import JsonResponse
 from django.conf import settings
@@ -300,6 +299,8 @@ def invest(request, plan_id):
 @login_required
 def my_investments(request):
     """Display user's investments."""
+    from django.db.models import Sum
+    from decimal import Decimal
 
     investments = Investment.objects.filter(user=request.user).select_related('plan').order_by('-start_date')
     active_investments = investments.filter(status='active')
