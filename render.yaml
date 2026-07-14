@@ -10,7 +10,6 @@ services:
     autoDeploy: true
     numInstances: 1
     healthCheckPath: /
-    maxShutdownDelaySeconds: 5
     
     envVars:
       - key: DATABASE_URL
