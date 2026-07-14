@@ -67,13 +67,21 @@ def delete_notification(request, notification_id):
 @login_required
 def check_new_notifications(request):
     """Check for new unread notifications"""
-    count = Notification.objects.filter(user=request.user, is_read=False).count()
+    unread_qs = Notification.objects.filter(user=request.user, is_read=False).order_by('-created_at')
+    count = unread_qs.count()
+    latest_unread = unread_qs.first()
+    last_seen_unread_id = request.session.get('last_seen_unread_notification_id')
 
-    # Store last check in session to only trigger alert on *new* arrivals
-    last_unread = request.session.get('last_unread_count', 0)
-    new_notifications = count > last_unread
-
-    request.session['last_unread_count'] = count
+    if latest_unread is None:
+        new_notifications = False
+        request.session.pop('last_seen_unread_notification_id', None)
+    elif last_seen_unread_id is None:
+        # First check in this session initializes state to prevent false "new" alerts.
+        request.session['last_seen_unread_notification_id'] = latest_unread.id
+        new_notifications = False
+    else:
+        new_notifications = latest_unread.id != last_seen_unread_id
+        request.session['last_seen_unread_notification_id'] = latest_unread.id
 
     return JsonResponse({'new_notifications': new_notifications, 'count': count})
 

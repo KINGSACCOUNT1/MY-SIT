@@ -3,19 +3,17 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
-from django.core.mail import send_mail
-from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.db.models import Sum
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django_ratelimit.decorators import ratelimit
+from decimal import Decimal
 import secrets
-import json
 from .models import CustomUser, ActivityLog, Referral
 from investments.models import Investment, Deposit, Withdrawal
-from .email_notifications import send_new_user_notification
+from .email_notifications import send_new_user_notification, send_user_activity_notification
 
 
 @ratelimit(key='ip', rate='5/m', method='POST', block=True)
@@ -60,6 +58,15 @@ def login_view(request):
             
             # Log activity
             ActivityLog.objects.create(user=user, action='login')
+
+            try:
+                send_user_activity_notification(
+                    user=user,
+                    action='login',
+                    details='Successful user login from web app.'
+                )
+            except Exception:
+                pass
             
             messages.success(request, f'Welcome back, {user.full_name}!')
             return redirect('dashboard:dashboard')
@@ -478,10 +485,10 @@ def referral_leaderboard(request):
     from django.db.models import Count
     
     top_referrers = CustomUser.objects.annotate(
-        referral_count=Count('referrals_made')
+        referral_count=Count('referrals')
     ).filter(referral_count__gt=0).order_by('-referral_count')[:20]
     
-    return render(request, 'accounts/referrals.html', {'top_referrers': top_referrers})
+    return render(request, 'accounts/referral_leaderboard.html', {'top_referrers': top_referrers})
 
 
 @ratelimit(key='ip', rate='3/m', method='POST', block=True)
@@ -490,7 +497,6 @@ def password_reset_view(request):
     """Custom password reset view with rate limiting"""
     from django.contrib.auth.forms import PasswordResetForm
     from django.contrib.auth.tokens import default_token_generator
-    from django.contrib.sites.shortcuts import get_current_site
     
     # Handle rate limit exceeded
     if getattr(request, 'limited', False):
@@ -504,9 +510,17 @@ def password_reset_view(request):
                 request=request,
                 use_https=request.is_secure(),
                 token_generator=default_token_generator,
-                email_template_name='registration/password_reset_email.html',
-                subject_template_name='registration/password_reset_subject.txt',
+                email_template_name='accounts/password_reset_email.html',
+                subject_template_name='accounts/password_reset_subject.txt',
             )
+            try:
+                send_user_activity_notification(
+                    user=None,
+                    action='password_reset_requested',
+                    details=f"Password reset requested for email: {request.POST.get('email', '').strip().lower()}"
+                )
+            except Exception:
+                pass
             return redirect('accounts:password_reset_done')
     else:
         form = PasswordResetForm()

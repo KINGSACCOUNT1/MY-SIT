@@ -17,6 +17,35 @@ logger = logging.getLogger(__name__)
 
 import time
 
+
+def send_user_activity_notification(user, action, details=''):
+    """Send lightweight admin email for key user activity events."""
+    try:
+        user_email = user.email if user else 'N/A'
+        user_name = user.full_name if user else 'N/A'
+        user_id = user.id if user else 'N/A'
+
+        subject = f'📌 User Activity Alert: {action}'
+        message = (
+            f"Action: {action}\n"
+            f"User: {user_name}\n"
+            f"Email: {user_email}\n"
+            f"User ID: {user_id}\n"
+            f"Details: {details or 'N/A'}\n"
+        )
+
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.ADMIN_EMAIL],
+            fail_silently=False,
+        )
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send user activity notification: {str(e)}")
+        return False
+
 def generate_verification_token(deposit_id, action, timestamp=None):
     """Generate secure token for email verification links with expiration support"""
     if timestamp is None:
