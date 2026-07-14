@@ -16,10 +16,14 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security Settings
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable must be set")
-DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+    if DEBUG:
+        # Development-only fallback to keep local commands usable.
+        SECRET_KEY = 'django-insecure-local-dev-fallback-key'
+    else:
+        raise ValueError("SECRET_KEY environment variable must be set")
 
 # Sentry Error Tracking (only in production)
 if not DEBUG and os.getenv('SENTRY_DSN'):

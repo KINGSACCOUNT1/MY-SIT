@@ -1,6 +1,5 @@
-# Render Blueprint for Elite Wealth Capital (MY-SITE)
-# Auto-deploy enabled - all secrets hardcoded for easy redeployment
-# WARNING: Keep repo private - contains API keys
+# Render Blueprint for Elite Wealth Capital (MY-SIT)
+# Secrets are managed in Render dashboard and referenced with sync:false.
 
 services:
   - type: web

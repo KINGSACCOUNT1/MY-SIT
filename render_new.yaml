@@ -1,6 +1,6 @@
 # Render Blueprint for Elite Wealth Capital - NEW DEPLOYMENT
 # Deploy to: NEW Render Account (KINGSACCOUNT1)
-# Auto-deploy from GitHub: KINGSACCOUNT1/MY-SITE
+# Auto-deploy from GitHub: KINGSACCOUNT1/MY-SIT
 
 services:
   - type: web
@@ -10,7 +10,7 @@ services:
     region: oregon  # Change if needed: oregon, frankfurt, singapore
     autoDeploy: true
     branch: main
-    repo: https://github.com/KINGSACCOUNT1/MY-SITE
+    repo: https://github.com/KINGSACCOUNT1/MY-SIT
     numInstances: 1
     healthCheckPath: /
     maxShutdownDelaySeconds: 5
