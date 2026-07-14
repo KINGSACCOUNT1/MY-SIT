@@ -1,35 +1,18 @@
 # Render Blueprint for Elite Wealth Capital
 
-services:
-  - type: web
-    name: my-site
-    env: docker
-    dockerfilePath: ./Dockerfile
-    plan: starter
-    region: oregon
-    autoDeploy: true
-    numInstances: 1
-    healthCheckPath: /
-    maxShutdownDelaySeconds: 5
+envVarGroups:
+  - name: my-site-shared
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: my-site-db
-          property: connectionString
       - key: DJANGO_SETTINGS_MODULE
         value: elite_wealth_capital.settings
       - key: DEBUG
         value: "False"
-      - key: SECRET_KEY
-        generateValue: true
       - key: ALLOWED_HOSTS
         value: elitewealthcapita.uk,www.elitewealthcapita.uk,.onrender.com
       - key: PYTHON_VERSION
         value: "3.11.11"
       - key: ADMIN_EMAIL
         value: admin@elitewealthcapita.uk
-      - key: ADMIN_PASSWORD
-        sync: false
       - key: COMPANY_NAME
         value: Elite Wealth Capital
       - key: COMPANY_EMAIL
@@ -48,16 +31,43 @@ services:
         value: "True"
       - key: EMAIL_HOST_USER
         value: admin@elitewealthcapita.uk
-      - key: EMAIL_HOST_PASSWORD
-        sync: false
       - key: DEFAULT_FROM_EMAIL
         value: admin@elitewealthcapita.uk
       - key: CLOUDINARY_CLOUD_NAME
         value: dh5ikf5un
+
+  - name: my-site-secrets
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
+
+services:
+  - type: web
+    name: my-site
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    autoDeploy: true
+    numInstances: 1
+    healthCheckPath: /
+    maxShutdownDelaySeconds: 5
+    envVarGroups:
+      - my-site-shared
+      - my-site-secrets
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: my-site-db
+          property: connectionString
 
   - type: cron
     name: investment-processor
@@ -67,17 +77,14 @@ services:
     region: oregon
     schedule: "0 * * * *"
     dockerCommand: python manage.py process_investments
+    envVarGroups:
+      - my-site-shared
+      - my-site-secrets
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: my-site-db
           property: connectionString
-      - key: DJANGO_SETTINGS_MODULE
-        value: elite_wealth_capital.settings
-      - key: DEBUG
-        value: "False"
-      - key: SECRET_KEY
-        generateValue: true
 
   - type: cron
     name: database-backup
@@ -87,17 +94,14 @@ services:
     region: oregon
     schedule: "0 2 * * *"
     dockerCommand: python backup_to_supabase.py
+    envVarGroups:
+      - my-site-shared
+      - my-site-secrets
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: my-site-db
           property: connectionString
-      - key: DJANGO_SETTINGS_MODULE
-        value: elite_wealth_capital.settings
-      - key: DEBUG
-        value: "False"
-      - key: SECRET_KEY
-        generateValue: true
 
 databases:
   - name: my-site-db
