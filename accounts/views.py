@@ -255,6 +255,22 @@ def profile_view(request):
         user.full_name = request.POST.get('full_name', user.full_name)
         user.phone = request.POST.get('phone', user.phone)
         user.country = request.POST.get('country', user.country)
+
+        profile_image = request.FILES.get('profile_image')
+        if profile_image:
+            # Validate file size (max 5MB)
+            if profile_image.size > 5 * 1024 * 1024:
+                messages.error(request, 'Profile image exceeds 5MB limit.')
+                return redirect('accounts:profile')
+
+            # Validate file type
+            allowed_types = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+            if profile_image.content_type not in allowed_types:
+                messages.error(request, 'Invalid image type. Use JPEG, PNG, WebP, or GIF.')
+                return redirect('accounts:profile')
+
+            user.profile_image = profile_image
+
         user.save()
         
         ActivityLog.objects.create(user=user, action='profile_updated')

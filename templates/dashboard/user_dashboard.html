@@ -678,7 +678,9 @@
                             <div style="margin-top: 15px;">
                                 <small style="color: #999;">Min: ${{ plan.min_amount|floatformat:0 }} - Max: ${{ plan.max_amount|floatformat:0 }}</small>
                             </div>
-                            <button class="btn btn-primary btn-sm mt-3 w-100">Buy Shares</button>
+                            <a href="{% url 'investments:invest' plan_id=plan.id %}" class="btn btn-primary btn-sm mt-3 w-100">
+                                Buy Shares
+                            </a>
                         </div>
                     {% endfor %}
                 </div>

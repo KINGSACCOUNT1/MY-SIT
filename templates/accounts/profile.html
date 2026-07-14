@@ -308,7 +308,7 @@
                         {% endfor %}
                         {% endif %}
                         
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -330,6 +330,12 @@
                                     <label class="info-label">Email (Read Only)</label>
                                     <input type="email" value="{{ user.email }}" 
                                            class="form-control form-control-dark" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="info-label">Profile Image</label>
+                                    <input type="file" name="profile_image"
+                                           class="form-control form-control-dark"
+                                           accept="image/jpeg,image/png,image/webp,image/gif">
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn-edit">
