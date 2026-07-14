@@ -53,6 +53,8 @@ services:
   - type: web
     name: my-site
     env: docker
+    repo: https://github.com/KINGSACCOUNT1/MY-SIT
+    branch: main
     dockerfilePath: ./Dockerfile
     plan: starter
     region: oregon
@@ -72,6 +74,8 @@ services:
   - type: cron
     name: investment-processor
     env: docker
+    repo: https://github.com/KINGSACCOUNT1/MY-SIT
+    branch: main
     dockerfilePath: ./Dockerfile
     plan: starter
     region: oregon
@@ -89,6 +93,8 @@ services:
   - type: cron
     name: database-backup
     env: docker
+    repo: https://github.com/KINGSACCOUNT1/MY-SIT
+    branch: main
     dockerfilePath: ./Dockerfile
     plan: starter
     region: oregon
