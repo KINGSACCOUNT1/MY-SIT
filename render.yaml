@@ -3,7 +3,7 @@
 
 services:
   - type: web
-    name: elitewealthcapital-web
+    name: elitewealthcapital-web-k1-20260714
     runtime: docker
     plan: free
     region: oregon
